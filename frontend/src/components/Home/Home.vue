@@ -20,6 +20,12 @@ export default {
     return {
       image: image
     };
+  },
+  mounted() {
+    this.$store.dispatch(
+      "pageTitle",
+      "Информационно-образовательная среда СГТУ им. Гагарина"
+    );
   }
 };
 </script>

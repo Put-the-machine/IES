@@ -26,9 +26,7 @@ export default {
   },
   methods: {
     onFormSubmit() {
-      this.$store
-        .dispatch("auth", this.form.login, this.form.password)
-        .then(alert("Logged!"));
+      //
     }
   }
 };
