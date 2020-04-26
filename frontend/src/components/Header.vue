@@ -6,7 +6,7 @@
         b-img.logo(:src="logo")
 
     b-navbar-nav
-        b-nav-item(active to="/") Главная
+      b-nav-item(active to="/") Главная
     
     b-navbar-nav.ml-auto
       LoginDropdown
