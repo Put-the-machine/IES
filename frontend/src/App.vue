@@ -1,33 +1,29 @@
 <template lang="pug">
   #app.d-flex.flex-column
     Header(:logged="is_logged", :user="user")
-    
-    PageTitle(:title="title")
+
+    PageTitle
     .container-fluid.bg-white.semi-shadow.flex-grow-1
       .container
         .row
           .col.px-5.py-4
             router-view
+
     Footer.footer
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+import Header from "./components/Header";
 import PageTitle from "./components/PageTitle";
-import Home from "./components/Home/Home.vue";
-import Footer from "./components/Footer.vue";
+import Home from "./components/Home/Home";
+import Footer from "./components/Footer";
 
 export default {
-  name: "App",
   data() {
     return {};
   },
 
   computed: {
-    title: function() {
-      return this.$store.getters.pageTitle;
-    },
-
     is_logged: function() {
       return this.$store.state.is_logged;
     },

@@ -14,15 +14,16 @@
 </template>
 
 <script>
-import LoginDropdown from "./LoginDropdown.vue";
+import LoginDropdown from "./LoginDropdown";
 import Logo from "../assets/img/logo.png";
 
 export default {
-  name: "Header",
   props: ["logged", "user"],
+
   components: {
     LoginDropdown
   },
+
   data() {
     return {
       logo: Logo

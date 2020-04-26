@@ -6,6 +6,7 @@
       b-button(variant="outline-primary" :class="{ active: sortBy == 'code' }" @click="sortBy='code'") Код дисциплины
       b-button(variant="outline-primary" :class="{ active: sortBy == 'name' }" @click="sortBy='name'") Название дисциплины
       b-button(variant="outline-primary" :class="{ active: sortBy == 'number' }" @click="sortBy='number'") Номер семестра
+
   b-table.mt-2(hover :items="sortedSubjects" head-variant="dark")
     template(v-slot:cell(Название)="data")
       router-link(:to="'subject/' + data.value.code" v-if="logged") {{ data.value.name }}
@@ -114,10 +115,12 @@ export default {
       ]
     };
   },
+
   computed: {
     logged() {
       return this.$store.getters.isLogged;
     },
+
     sortedSubjects() {
       if (this.sortBy == "code") {
         return [...this.subjects].sort((a, b) => a.Код - b.Код);
@@ -130,6 +133,7 @@ export default {
       }
     }
   },
+
   mounted() {
     this.$store.dispatch("pageTitle", this.curriculum_area);
   }

@@ -4,6 +4,10 @@
 
 <script>
 export default {
-  props: ["title"]
+  computed: {
+    title: function() {
+      return this.$store.getters.pageTitle;
+    }
+  }
 };
 </script>
