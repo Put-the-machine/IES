@@ -2,10 +2,11 @@
 #header.semi-shadow.sticky-top
   b-navbar(type="light" variant="white")
     b-navbar-brand(href="#")
-      b-img.logo(:src="logo")
+      router-link(to="/")
+        b-img.logo(:src="logo")
 
     b-navbar-nav
-      b-nav-item(active) Главная
+      b-nav-item(active to="/") Главная
     
     b-navbar-nav.ml-auto
       LoginDropdown

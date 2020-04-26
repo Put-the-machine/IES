@@ -9,8 +9,8 @@ b-container
     b-col.mx-auto.h6.mt-4.text-muted.text-center(v-if="searchPrograms.length == 0") Ничего не найдено
     b-col(cols="6").mt-4.pl-3(v-for="institute in searchPrograms" :key="institute.name")
       .text-theme.h5 {{ institute.name }} <br>
-      b-link.pl-3.py-2(v-for="program in institute.programs" :key="program.id")
-        b-link.text-dark {{ program.name }} <br>
+      .pl-3.pb-1(v-for="program in institute.programs" :key="program.id")
+        router-link(:to="'curriculum/' + program.id").text-dark {{ program.name }} <br>
     
 </template>
 

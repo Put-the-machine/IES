@@ -2,12 +2,12 @@
   #app.d-flex.flex-column
     Header(:logged="is_logged", :user="user")
     
-    PageTitle(title="Информационно-образовательная среда СГТУ им. Гагарина")
+    PageTitle(:title="title")
     .container-fluid.bg-white.semi-shadow.flex-grow-1
       .container
         .row
           .col.px-5.py-4
-            Home 
+            router-view
     Footer.footer
 </template>
 
@@ -24,6 +24,10 @@ export default {
   },
 
   computed: {
+    title: function() {
+      return this.$store.getters.pageTitle;
+    },
+
     is_logged: function() {
       return this.$store.state.is_logged;
     },
@@ -54,6 +58,9 @@ body
 
 .bg-theme
   background-color #046cc1
+
+.b-dropdown-form:focus
+  outline none !important
 
 #app
   min-height 100vh

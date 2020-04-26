@@ -5,5 +5,9 @@ export default {
   },
   actions: {},
   mutations: {},
-  getters: {}
+  getters: {
+    isLogged(state) {
+      return state.is_logged;
+    }
+  }
 };

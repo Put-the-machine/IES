@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import institute from "./modules/institute";
+
+import main from "./modules/main";
 import user from "./modules/user";
+import institute from "./modules/institute";
 
 Vue.use(Vuex);
 
@@ -10,7 +12,8 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    institute,
-    user
+    main,
+    user,
+    institute
   }
 });
