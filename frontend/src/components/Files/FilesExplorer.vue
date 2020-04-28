@@ -10,22 +10,24 @@
     table.table.table-hover.border.mt-2
       thead
         tr.thead-dark
-          th
+          th.font-weight-normal
             span Название
-          th Время создания
+          th.font-weight-normal Время создания
       
       tbody.pointer
-        tr(v-for="file in files" :key="file.name")
+        tr(
+          v-for="file in files"
+          :key="file.name"
+          @click="$emit('open', file)"
+        )
           td
             b-icon-file-earmark-text(
               v-if="file.isFile"
-              font-scale="1"
               variant="info"
             )
 
             b-icon-folder-fill(
               v-else
-              font-scale="1"
               variant="primary"
             )
 

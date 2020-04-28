@@ -4,7 +4,7 @@
   .container-fluid.bg-white.semi-shadow.flex-grow-1
     .container
       .row
-        .col.px-5.py-4
+        .col.px-0.px-md-3.px-lg-5.py-4
           slot
 </template>
 

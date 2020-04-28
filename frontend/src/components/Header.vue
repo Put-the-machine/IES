@@ -1,21 +1,30 @@
 <template lang="pug">
   #header.semi-shadow.sticky-top
-    b-navbar(type="light" variant="white")
+    b-navbar(
+      type="light"
+      variant="white"
+      toggleable="lg"
+    )
       b-navbar-brand(href="#")
         router-link(to="/")
           b-img.logo(:src="logo")
 
-      b-navbar-nav
-        b-nav-item(
-          v-for="item in nav_items"
-          :key="item.name"
-          :to="item.link"
-          :class="{ active: navActiveLink == item.link }"
-        ) {{ item.name }}
-      
-      b-navbar-nav.ml-auto
-        UserDropdown(v-if="logged")
-        LoginDropdown(v-else)
+      b-navbar-toggle(
+        target="nav-collapse"
+      )
+
+      b-collapse#nav-collapse(is-nav)
+        b-navbar-nav
+          b-nav-item(
+            v-for="item in nav_items"
+            :key="item.name"
+            :to="item.link"
+            :class="{ active: navActiveLink == item.link }"
+          ) {{ item.name }}
+        
+        b-navbar-nav.ml-auto
+          UserDropdown(v-if="logged")
+          LoginDropdown(v-else)
 </template>
 
 <script>

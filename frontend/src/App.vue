@@ -1,10 +1,11 @@
 <template lang="pug">
-  #app.d-flex.flex-column
-    Header(:logged="is_logged", :user="user")
+  #app.d-flex.flex-column.justify-content-between
+    .top
+      Header(:logged="is_logged", :user="user")
     
-    router-view
+      router-view
 
-    Footer.footer
+    Footer
 </template>
 
 <script>
@@ -36,8 +37,12 @@ export default {
 </script>
 
 <style lang="stylus">
+
 body
   background-color #efefef
+
+#app
+  min-height 100vh
 
 .semi-shadow
   box-shadow 0 0 0.35rem 0 rgba(0, 0, 0, 0.1)
@@ -53,8 +58,4 @@ body
 
 .pointer
   cursor pointer
-
-#app
-  min-height 100vh
-  min-width 960px
 </style>

@@ -3,6 +3,7 @@
     FilesExplorer(
       :path="path",
       :files="files"
+      @open="open"
     )
 </template>
 
@@ -38,6 +39,13 @@ export default {
         }
       ]
     };
+  },
+
+  methods: {
+    open(obj) {
+      let pathToOpen = this.path + "/" + obj.name;
+      alert(pathToOpen);
+    }
   },
 
   components: {
