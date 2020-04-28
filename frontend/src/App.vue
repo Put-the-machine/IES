@@ -1,21 +1,15 @@
 <template lang="pug">
   #app.d-flex.flex-column
     Header(:logged="is_logged", :user="user")
-
-    PageTitle
-    .container-fluid.bg-white.semi-shadow.flex-grow-1
-      .container
-        .row
-          .col.px-5.py-4
-            router-view
+    
+    router-view
 
     Footer.footer
 </template>
 
 <script>
 import Header from "./components/Header";
-import PageTitle from "./components/PageTitle";
-import Home from "./components/Home/Home";
+import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 
 export default {
@@ -25,18 +19,17 @@ export default {
 
   computed: {
     is_logged: function() {
-      return this.$store.state.is_logged;
+      return this.$store.getters.isLogged;
     },
 
     user: function() {
-      return this.$store.state.user;
+      return this.$store.getters.user;
     }
   },
 
   components: {
     Header,
-    PageTitle,
-    Home,
+    Wrapper,
     Footer
   }
 };
@@ -57,6 +50,9 @@ body
 
 .b-dropdown-form:focus
   outline none !important
+
+.pointer
+  cursor pointer
 
 #app
   min-height 100vh

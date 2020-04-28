@@ -13,7 +13,8 @@
       b-col(cols="6").mt-4.pl-3(v-for="institute in searchPrograms" :key="institute.name")
         .text-theme.h5 {{ institute.name }} <br>
         .pl-3.pb-1(v-for="program in institute.programs" :key="program.id")
-          router-link(:to="'curriculum/' + program.id").text-dark {{ program.name }} <br>
+          router-link(:to="'curriculum/' + program.id").text-dark {{ program.name }}
+        <br>
 </template>
 
 <script>
