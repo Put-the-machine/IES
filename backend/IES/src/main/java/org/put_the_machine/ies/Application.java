@@ -1,4 +1,4 @@
-package ies;
+package org.put_the_machine.ies;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
