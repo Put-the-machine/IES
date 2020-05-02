@@ -1,7 +1,6 @@
 package org.put_the_machine.ies.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
