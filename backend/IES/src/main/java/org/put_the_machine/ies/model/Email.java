@@ -17,7 +17,7 @@ public class Email {
         if (address.matches(emailPattern)) {
             this.address = address;
         } else {
-            throw new EmailValidationException("Invalid email");
+            throw new EmailValidationException("Invalid email: " + address);
         }
     }
 }
