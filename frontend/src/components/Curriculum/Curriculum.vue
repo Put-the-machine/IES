@@ -137,7 +137,7 @@ export default {
     },
 
     user() {
-      return this.$store.getters.user
+      return this.$store.getters.user;
     },
 
     sortedSubjects() {
@@ -153,10 +153,10 @@ export default {
     filteredSubjects() {
       if (this.filterBy == "all" || !this.logged) {
         return this.sortedSubjects;
-      }
-
-      else {
-        return this.sortedSubjects.filter(subject => subject.numSem == this.user.current_sem);
+      } else {
+        return this.sortedSubjects.filter(
+          subject => subject.numSem == this.user.current_sem
+        );
       }
     }
   },
