@@ -51,6 +51,12 @@ export default {
   components: {
     Wrapper,
     FilesExplorer
+  },
+
+  beforeCreate() {
+    if (this.$store.getters.user.role != "student") {
+      this.$router.push("/");
+    }
   }
 };
 </script>
