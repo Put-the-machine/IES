@@ -2,7 +2,7 @@
   Wrapper(title="Учебный план")
     .pb-3.pl-1.text-secondary(v-if="!logged") Для доступа к учебным материалам, пожалуйста, авторизуйтесь.
     .d-flex.flex-wrap.flex-column.flex-md-row
-      .filter.d-flex.flex-column.flex-md-row(v-if="logged")
+      .filter.d-flex.flex-column.flex-md-row(v-if="user.role == 'student'")
         .p-1.pr-3 Фильтр:
         b-button-group(size="sm").d-none.d-md-flex
           b-button(variant="outline-primary" :class="{ active: filterBy == 'current_sem' }" @click="filterBy='current_sem'") Текущий семестр
