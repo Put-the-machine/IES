@@ -1,54 +1,48 @@
 <template lang="pug">
-  #app.d-flex.flex-column
-    Header(:logged="is_logged", :user="user")
+  #app.d-flex.flex-column.justify-content-between
+    .top
+      Header(:logged="is_logged", :user="user")
     
-    PageTitle(:title="title")
-    .container-fluid.bg-white.semi-shadow.flex-grow-1
-      .container
-        .row
-          .col.px-5.py-4
-            router-view
-    Footer.footer
+      router-view
+
+    Footer
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import PageTitle from "./components/PageTitle";
-import Home from "./components/Home/Home.vue";
-import Footer from "./components/Footer.vue";
+import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
+import Footer from "./components/Footer";
 
 export default {
-  name: "App",
   data() {
     return {};
   },
 
   computed: {
-    title: function() {
-      return this.$store.getters.pageTitle;
-    },
-
     is_logged: function() {
-      return this.$store.state.is_logged;
+      return this.$store.getters.isLogged;
     },
 
     user: function() {
-      return this.$store.state.user;
+      return this.$store.getters.user;
     }
   },
 
   components: {
     Header,
-    PageTitle,
-    Home,
+    Wrapper,
     Footer
   }
 };
 </script>
 
 <style lang="stylus">
+
 body
   background-color #efefef
+
+#app
+  min-height 100vh
 
 .semi-shadow
   box-shadow 0 0 0.35rem 0 rgba(0, 0, 0, 0.1)
@@ -62,7 +56,6 @@ body
 .b-dropdown-form:focus
   outline none !important
 
-#app
-  min-height 100vh
-  min-width 960px
+.pointer
+  cursor pointer
 </style>

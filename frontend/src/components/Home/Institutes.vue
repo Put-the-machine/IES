@@ -1,27 +1,30 @@
 <template lang="pug">
-b-container
-  b-row.bg-dark.text-white.p-1.rounded
-    b-col(cols="4" offset="2")
-      .h6.pt-2.text-nowrap.font-weight-normal Список направлений
-    b-col(cols="4").py-1
-      b-form-input(v-model="text_to_search" placeholder="Поиск по направлениям" size="sm")
-  b-row
-    b-col.mx-auto.h6.mt-4.text-muted.text-center(v-if="searchPrograms.length == 0") Ничего не найдено
-    b-col(cols="6").mt-4.pl-3(v-for="institute in searchPrograms" :key="institute.name")
-      .text-theme.h5 {{ institute.name }} <br>
-      .pl-3.pb-1(v-for="program in institute.programs" :key="program.id")
-        router-link(:to="'curriculum/' + program.id").text-dark {{ program.name }} <br>
-    
+  b-container
+    b-row.bg-dark.text-white.p-1.rounded
+      b-col(cols="12" md="6" lg="4" offset="0" offset-lg="2")
+        .h6.pt-1.pt-md-2.text-nowrap.font-weight-normal Список направлений
+
+      b-col(cols="12" md="6" lg="4").pb-1.pt-0.pt-md-1
+        b-form-input(v-model="text_to_search" placeholder="Поиск по направлениям" size="sm")
+
+    b-row
+      b-col(cols="12" lg="6").mx-auto.h6.mt-4.text-muted.text-center(v-if="searchPrograms.length == 0") Ничего не найдено
+
+      b-col(cols="12" lg="6").mt-4.pl-3(v-for="institute in searchPrograms" :key="institute.name")
+        .text-theme.h5 {{ institute.name }} <br>
+        .pl-3.pb-1(v-for="program in institute.programs" :key="program.id")
+          router-link(:to="'curriculum/' + program.id").text-dark {{ program.name }}
+        <br>
 </template>
 
 <script>
 export default {
-  name: "Institutes",
   data() {
     return {
       text_to_search: ""
     };
   },
+
   computed: {
     institutes() {
       return this.$store.getters.getInstitutes;

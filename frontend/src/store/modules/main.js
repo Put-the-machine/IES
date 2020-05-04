@@ -1,20 +1,23 @@
 export default {
   state: {
-    pageTitle: "Информационно-образовательная среда СГТУ им. Гагарина"
+    navActiveLink: "/"
   },
+
   actions: {
-    pageTitle({ commit }, title) {
-      commit("pageTitle", title);
+    navActiveLink({ commit }, link) {
+      commit("navActiveLink", link);
     }
   },
+
   mutations: {
-    pageTitle(state, title) {
-      state.pageTitle = title;
+    navActiveLink(state, link) {
+      state.navActiveLink = link;
     }
   },
+
   getters: {
-    pageTitle(state) {
-      return state.pageTitle;
+    navActiveLink(state) {
+      return state.navActiveLink;
     }
   }
 };
