@@ -2,9 +2,9 @@
   b-container
     b-row.bg-dark.text-white.p-1.rounded
       b-col(cols="12" md="6" lg="4" offset="0" offset-lg="2")
-        .h6.pt-2.text-nowrap.font-weight-normal Список направлений
+        .h6.pt-1.pt-md-2.text-nowrap.font-weight-normal Список направлений
 
-      b-col(cols="12" md="6" lg="4").py-1
+      b-col(cols="12" md="6" lg="4").pb-1.pt-0.pt-md-1
         b-form-input(v-model="text_to_search" placeholder="Поиск по направлениям" size="sm")
 
     b-row

@@ -12,7 +12,7 @@
         tr.thead-dark
           th.font-weight-normal
             span Название
-          th.font-weight-normal Время создания
+          th.font-weight-normal Дата
       
       tbody.pointer
         tr(
@@ -56,6 +56,12 @@ export default {
   components: {
     BIconFileEarmarkText,
     BIconFolderFill
+  },
+
+  beforeCreate() {
+    if (this.$store.getters.user.role != "student") {
+      this.$router.push("/");
+    }
   }
 };
 </script>

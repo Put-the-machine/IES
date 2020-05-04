@@ -42,13 +42,18 @@ export default {
 
   data() {
     return {
-      logo: Logo,
+      logo: Logo
+    };
+  },
 
-      nav_dict: {
+  computed: {
+    nav_items: function() {
+      let nav_dict = {
         "": [{ name: "Главная", link: "/" }],
 
         student: [
           { name: "Главная", link: "/" },
+          { name: "Учебный план", link: null },
           { name: "Сообщения", link: "/messages" }
         ],
 
@@ -71,13 +76,13 @@ export default {
           { name: "Кафедры", link: "/departments" },
           { name: "Пользователи", link: "/users" }
         ]
-      }
-    };
-  },
+      };
 
-  computed: {
-    nav_items: function() {
-      return this.nav_dict[this.user.role];
+      if (this.user.role === "student") {
+        nav_dict.student[1].link = "/curriculum/" + this.user.course_id;
+      }
+
+      return nav_dict[this.user.role];
     },
 
     navActiveLink: function() {

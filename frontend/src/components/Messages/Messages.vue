@@ -12,10 +12,10 @@
         rows="8"
       )
 
-      b-form-file.mt-3(
+      b-form-file.mt-3.overflow-hidden(
         v-model="files"
         :state="Boolean(files)"
-        placeholder="Выберите файлы или переместите их сюда"
+        placeholder="Выберите файлы"
         drop-placeholder="Переместите файлы сюда"
         multiple
       )
@@ -79,6 +79,12 @@ export default {
 
   components: {
     Wrapper
+  },
+
+  beforeCreate() {
+    if (this.$store.getters.user.role != "student") {
+      this.$router.push("/");
+    }
   },
 
   mounted() {

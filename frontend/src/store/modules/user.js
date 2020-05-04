@@ -4,7 +4,9 @@ export default {
     user: {
       id: null,
       fullname: "",
-      role: ""
+      role: "",
+      course_id: null,
+      current_sem: null
     }
   },
 
@@ -22,7 +24,9 @@ export default {
       commit("autorize", {
         id: 1,
         fullname: "Имя Фамилия",
-        role: "student"
+        role: "student",
+        course_id: 1,
+        current_sem: 1
       });
     },
 
