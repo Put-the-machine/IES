@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Student extends User {
     private Integer year;
 
