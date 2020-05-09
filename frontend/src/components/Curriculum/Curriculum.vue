@@ -1,5 +1,5 @@
 <template lang="pug">
-  Wrapper(title="Учебный план")
+  Wrapper(:title="course.name")
     .pb-3.pl-1.text-secondary(v-if="!logged") Для доступа к учебным материалам, пожалуйста, авторизуйтесь.
     .d-flex.flex-wrap.flex-column.flex-md-row
       .filter.d-flex.flex-column.flex-md-row(v-if="user.role == 'student'")
@@ -60,8 +60,22 @@ export default {
     window.scrollTo(0, 0);
   },
 
+  mounted() {
+    this.course.id = this.$route.params.id;
+    this.course.name = "Программная инженерия";
+
+    if (this.user.course_id == this.$route.params.id) {
+      this.$store.dispatch("navActiveLink", "/curriculum/" + this.$route.params.id);
+    }
+  },
+
   data() {
     return {
+      course: {
+        id: null,
+        name: null
+      },
+
       sortBy: "code",
       filterBy: "current_sem",
       subjects: [
