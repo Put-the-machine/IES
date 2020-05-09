@@ -65,7 +65,10 @@ export default {
     this.course.name = "Программная инженерия";
 
     if (this.user.course_id == this.$route.params.id) {
-      this.$store.dispatch("navActiveLink", "/curriculum/" + this.$route.params.id);
+      this.$store.dispatch(
+        "navActiveLink",
+        "/curriculum/" + this.$route.params.id
+      );
     }
   },
 
