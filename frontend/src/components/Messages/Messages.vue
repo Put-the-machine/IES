@@ -74,6 +74,10 @@ export default {
       };
 
       alert(JSON.stringify(request, null, "    "));
+
+      this.toTeacherId = null;
+      this.message = "";
+      this.files = [];
     }
   },
 
