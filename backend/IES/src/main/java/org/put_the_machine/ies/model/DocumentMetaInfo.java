@@ -1,12 +1,14 @@
 package org.put_the_machine.ies.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.activation.MimeType;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Data
+@Getter
+@Setter   // todo: add JPA annotation
 public class DocumentMetaInfo {
     private MimeType mimeType;
     private String name;
