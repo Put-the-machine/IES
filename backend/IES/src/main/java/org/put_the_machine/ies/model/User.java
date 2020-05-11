@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@Table(name = "USR")
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
