@@ -5,7 +5,7 @@ import lombok.experimental.SuperBuilder;
 import java.util.Optional;
 
 @SuperBuilder
-public abstract class UserFilter {
+public abstract class UserCriteria {
     private final String username;
     private final String fullname;
     private final String email;

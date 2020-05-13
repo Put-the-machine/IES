@@ -5,7 +5,7 @@ import lombok.experimental.SuperBuilder;
 import java.util.Optional;
 
 @SuperBuilder
-public class TeacherFilter extends UserFilter {
+public class TeacherCriteria extends UserCriteria {
     private final String departmentName;
     private final Long departmentId;
     private final String studentUsername;
