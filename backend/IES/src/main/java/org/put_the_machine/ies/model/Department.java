@@ -9,8 +9,8 @@ import java.util.Set;
 
 @Entity
 @Data
-@ToString(exclude = {"institute", "teachers"})
-@EqualsAndHashCode(exclude = {"institute", "teachers"})
+@EqualsAndHashCode(exclude = {"institute", "teachers", "courses"})
+@ToString(exclude = {"institute", "teachers", "courses"})
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,5 +24,8 @@ public class Department {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department" , cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Teacher> teachers;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department" , cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Course> courses;
 
 }
+

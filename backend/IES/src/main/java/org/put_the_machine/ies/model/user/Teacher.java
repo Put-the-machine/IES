@@ -2,7 +2,9 @@ package org.put_the_machine.ies.model.user;
 
 import lombok.*;
 import org.put_the_machine.ies.model.Department;
+import org.put_the_machine.ies.model.DocumentMetaInfo;
 import org.put_the_machine.ies.model.Subject;
+import org.put_the_machine.ies.model.SubjectGroup;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -18,7 +20,10 @@ public class Teacher extends User {
     private Department department;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Subject> subjects;
+    private Set<SubjectGroup> subjectGroups;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creator", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<DocumentMetaInfo> documentMetaInfos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

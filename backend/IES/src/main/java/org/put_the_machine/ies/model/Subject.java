@@ -2,6 +2,7 @@ package org.put_the_machine.ies.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.put_the_machine.ies.model.user.Teacher;
 
 import javax.persistence.*;
@@ -9,23 +10,19 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"courses", "teacher"})
+@EqualsAndHashCode(exclude = {"studyPlanSubjects", "subjectGroups"})
+@ToString(exclude = {"studyPlanSubjects", "subjectGroups"})
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "SUBJECT_COURSE",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    private Set<Course> courses;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<StudyPlanSubject> studyPlanSubjects;
 
-    private Integer year;
+    private Integer semester;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Teacher teacher;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<SubjectGroup> subjectGroups;
 
 }
