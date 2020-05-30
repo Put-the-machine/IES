@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DepartmentRepository extends CrudRepository<Department, Long> {
-    List<Department> findAllByInstitute(Institute institute);
+public interface CourseProfileRepository extends CrudRepository<CourseProfile, Long> {
+    List<CourseProfile> findAllByCourse(Course course);
 }

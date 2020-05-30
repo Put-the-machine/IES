@@ -7,4 +7,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean // todo: remove and add @Repository
 public interface DocumentRepository extends CrudRepository<Document, Long>, JpaSpecificationExecutor<Document> {
+
 }
