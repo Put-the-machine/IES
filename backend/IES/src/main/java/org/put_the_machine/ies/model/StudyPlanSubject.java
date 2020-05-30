@@ -1,26 +1,26 @@
 package org.put_the_machine.ies.model;
 
-import lombok.*;
-
-import javax.activation.MimeType;
+import lombok.Data;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
+@Entity
 @Data
-public class DocumentMetaInfo {
+public class StudyPlanSubject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private MimeType mimeType;
     private String name;
-    private String path;
-    private LocalDateTime creationTime;
+    private int semester;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Teacher creator;
+    private Subject subject;
+
+    private boolean isTest;
+    private boolean isExam;
+    private boolean isCourseWork;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private SubjectGroup subjectGroup;
-    private Boolean isFile;
+    private CourseProfile courseProfile;
+
 }

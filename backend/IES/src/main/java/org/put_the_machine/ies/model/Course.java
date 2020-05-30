@@ -19,10 +19,13 @@ public class Course {
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Student> students;
+    private Set<CourseProfile> courseProfiles;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Subject> subjects;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private CourseProfile defaultProfile;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Department department;
 
     @Override
     public boolean equals(Object o) {

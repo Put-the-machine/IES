@@ -24,6 +24,9 @@ public class Department {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department" , cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Teacher> teachers;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department" , cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Course> courses;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

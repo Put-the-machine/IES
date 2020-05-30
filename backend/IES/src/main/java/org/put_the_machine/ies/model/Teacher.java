@@ -13,5 +13,10 @@ public class Teacher extends User {
     private Department department;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Subject> subjects;
+    private Set<SubjectGroup> subjectGroups;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creator", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<DocumentMetaInfo> documentMetaInfos;
+
+
 }

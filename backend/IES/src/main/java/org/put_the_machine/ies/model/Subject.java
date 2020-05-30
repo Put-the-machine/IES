@@ -16,18 +16,13 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "SUBJECT_COURSE",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    private Set<Course> courses;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<StudyPlanSubject> studyPlanSubjects;
 
-    private Integer year;
+    private Integer semester;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Teacher teacher;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<SubjectGroup> subjectGroups;
 
     @Override
     public boolean equals(Object o) {
@@ -35,11 +30,11 @@ public class Subject {
         if (!(o instanceof Subject)) return false;
         Subject subject = (Subject) o;
         return Objects.equals(getId(), subject.getId()) &&
-                Objects.equals(getYear(), subject.getYear());
+                Objects.equals(getSemester(), subject.getSemester());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getYear());
+        return Objects.hash(getId(), getSemester());
     }
 }
