@@ -1,8 +1,12 @@
-package org.put_the_machine.ies.model;
+package org.put_the_machine.ies.model.user;
 
 import lombok.*;
+import org.put_the_machine.ies.model.Course;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +30,11 @@ public class Student extends User {
     @Override
     public int hashCode() {
         return Objects.hash(getYear(), getCourse());
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(UserAuthority.STUDENT);
     }
 }
 

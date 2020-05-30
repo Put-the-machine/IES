@@ -1,8 +1,8 @@
 package org.put_the_machine.ies.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.put_the_machine.ies.model.user.User;
 
 import javax.activation.MimeType;
 import java.time.LocalDateTime;

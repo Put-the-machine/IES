@@ -1,16 +1,15 @@
 package org.put_the_machine.ies.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.EqualsAndHashCode;
+import org.put_the_machine.ies.model.user.Teacher;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude = {"courses", "teacher"})
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,17 +28,4 @@ public class Subject {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Teacher teacher;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Subject)) return false;
-        Subject subject = (Subject) o;
-        return Objects.equals(getId(), subject.getId()) &&
-                Objects.equals(getYear(), subject.getYear());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getYear());
-    }
 }
