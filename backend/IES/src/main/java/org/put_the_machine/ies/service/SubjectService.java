@@ -1,18 +1,13 @@
 package org.put_the_machine.ies.service;
 
-import javax.security.auth.Subject;
-import java.util.List;
+import org.put_the_machine.ies.model.Subject;
 
 public interface SubjectService {
-    Subject saveSubject(Subject subject);
+    Subject save(Subject subject);
 
-    Subject getSubjectById(Long id);
+    Subject getById(Long subjectId);
 
-    Subject updateSubject(Subject subject);
+    void update(Subject subject);
 
-    void deleteSubjectById(Long id);
-
-    List<Subject> getSubjectByTeacherId(Long teacherId);
-
-    List<Subject> getSubjectByInstituteId(Long instituteId);
+    void deleteById(Long subjectId);
 }

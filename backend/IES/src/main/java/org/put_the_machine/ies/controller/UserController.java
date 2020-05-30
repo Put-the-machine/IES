@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("{userId}")
+    @GetMapping("users/{userId}")
     User getById(@PathVariable Long userId) {
         return userService.getById(userId);
     }
