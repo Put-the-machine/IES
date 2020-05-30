@@ -9,3 +9,24 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+  mail:
+    notification:
+      username: notification.ies.sstu@gmail.com
+      password: rikafurude07151129
+    user:
+      username: aaa
+      password: bbb
+    properties:
+      mail:
+        debug: true
+        transport:
+          protocol: smtp
+        smtp:
+          host: smtp.gmail.com
+          port: 587
+          auth: true
+          starttls:
+            enable: true
+          socketFactory:
+            port: 587
+            class: javax.net.ssl.SSLSocketFactory
