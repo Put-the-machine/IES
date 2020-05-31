@@ -23,13 +23,13 @@ public class CourseController {
         return courseService.update(course);
     }
 
-    @DeleteMapping("courses/{course_id}")
-    public void deleteById(@PathVariable("course_id") Long courseId) {
+    @DeleteMapping("courses/{courseId}")
+    public void deleteById(@PathVariable Long courseId) {
         courseService.deleteById(courseId);
     }
 
-    @GetMapping("courses/{id}")
-    public Course getById(@PathVariable("course_id") Long courseId) {
+    @GetMapping("courses/{courseId}")
+    public Course getById(@PathVariable Long courseId) {
         return courseService.getById(courseId);
     }
 
@@ -38,8 +38,8 @@ public class CourseController {
         return courseService.getCourses();
     }
 
-    @GetMapping("departments/{department_id}/courses")
-    public List<Course> getAllByDepartment(@PathVariable("department_id") Long departmentId) {
+    @GetMapping("departments/{departmentId}/courses")
+    public List<Course> getAllByDepartment(@PathVariable Long departmentId) {
         return courseService.getCoursesByDepartmentId(departmentId);
     }
 }

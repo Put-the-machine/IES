@@ -1,20 +1,20 @@
 package org.put_the_machine.ies.service;
 
-import org.put_the_machine.ies.model.Document;
 import org.put_the_machine.ies.model.DocumentMetaInfo;
+import org.put_the_machine.ies.model.SubjectGroup;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DocumentService {
-    Document save(Document document);
+    DocumentMetaInfo save(MultipartFile document, SubjectGroup subjectGroup, String path) throws IOException;
 
-    Document get(String path);
+    DocumentMetaInfo getById(Long departmentId);
 
-    void delete(String path);
+    void deleteById(Long documentMetaInfoId) throws IOException;
 
-    List<DocumentMetaInfo> getDirectoryContentByPath(String path);
+    List<DocumentMetaInfo> getAllBySubjectGroupId(Long groupSubjectId);
 
-    boolean isDocumentMimeTypeAvailable(DocumentMetaInfo documentMetaInfo);
-
-    List<String> getAvailableMimeTypes();
+    MultipartFile getFileFromDocumentMetaInfo(DocumentMetaInfo documentMetaInfo) throws IOException;
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/study_plan_subject")
 @RequiredArgsConstructor
 public class StudyPlanSubjectController {
     private final StudyPlanSubjectService service;
@@ -23,18 +22,18 @@ public class StudyPlanSubjectController {
         return service.update(studyPlanSubject);
     }
 
-    @DeleteMapping("study_plan_subjects/{study_plan_subject_id}")
-    public void deleteById(@PathVariable("study_plan_subject_id") Long studyPlanSubjectId) {
+    @DeleteMapping("study_plan_subjects/{studyPlanSubjectId}")
+    public void deleteById(@PathVariable Long studyPlanSubjectId) {
         service.deleteById(studyPlanSubjectId);
     }
 
-    @GetMapping("study_plan_subjects/{study_plan_subject_id}")
+    @GetMapping("study_plan_subjects/{studyPlanSubjectId}")
     public StudyPlanSubject getById(@PathVariable Long studyPlanSubjectId) {
         return service.getById(studyPlanSubjectId);
     }
 
-    @GetMapping("courses/{course_profile_id}/study_plan_subjects")
-    public List<StudyPlanSubject> getByInstitute(@PathVariable("course_profile_id") Long courseProfileId) {
+    @GetMapping("courses/{courseProfileId}/study_plan_subjects")
+    public List<StudyPlanSubject> getByInstitute(@PathVariable Long courseProfileId) {
         return service.getAllByCourseProfileId(courseProfileId);
     }
 }

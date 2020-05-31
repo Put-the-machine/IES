@@ -1,15 +1,16 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.put_the_machine.ies.model.user.Teacher;
 
-import javax.activation.MimeType;
+import org.springframework.util.MimeType;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"creator", "subjectGroup"})
+@EqualsAndHashCode(exclude = {"subjectGroup"})
 public class DocumentMetaInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,11 +18,11 @@ public class DocumentMetaInfo {
 
     private MimeType mimeType;
     private String name;
-    private String path;
-    private LocalDateTime creationTime;
+    private String virtualPath;
+    @JsonIgnore
+    private String realPath;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Teacher creator;
+    private LocalDateTime creationTime;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private SubjectGroup subjectGroup;

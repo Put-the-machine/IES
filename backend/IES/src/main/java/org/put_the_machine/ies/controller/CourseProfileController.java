@@ -23,18 +23,18 @@ public class CourseProfileController {
         return service.update(courseProfile);
     }
 
-    @DeleteMapping("course_profiles/{course_id}")
-    public void deleteById(@PathVariable("course_id") Long courseProfileId) {
+    @DeleteMapping("course_profiles/{courseId}")
+    public void deleteById(@PathVariable("courseId") Long courseProfileId) {
         service.deleteById(courseProfileId);
     }
 
-    @GetMapping("course_profiles/{course_profile_id}")
-    public CourseProfile getById(@PathVariable("course_profile_id") Long courseProfileId) {
+    @GetMapping("course_profiles/{courseProfileId}")
+    public CourseProfile getById(@PathVariable Long courseProfileId) {
         return service.getById(courseProfileId);
     }
 
-    @GetMapping("courses/{course_id}/course_profiles")
-    public List<CourseProfile> getAllByCourse(@PathVariable("course_id") Long courseId) {
+    @GetMapping("courses/{courseId}/course_profiles")
+    public List<CourseProfile> getAllByCourse(@PathVariable Long courseId) {
         return service.getAllByCourseId(courseId);
     }
 }
