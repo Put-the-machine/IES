@@ -22,9 +22,6 @@ public class Teacher extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubjectGroup> subjectGroups;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creator", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<DocumentMetaInfo> documentMetaInfos;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(UserAuthority.TEACHER);

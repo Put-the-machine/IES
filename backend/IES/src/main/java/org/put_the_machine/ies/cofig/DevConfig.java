@@ -8,12 +8,18 @@ import org.put_the_machine.ies.model.user.Administrator;
 import org.put_the_machine.ies.model.user.Manager;
 import org.put_the_machine.ies.model.user.Student;
 import org.put_the_machine.ies.model.user.Teacher;
+import org.put_the_machine.ies.repository.DocumentRepository;
+import org.put_the_machine.ies.repository.impl.DocumentRepositoryImpl;
 import org.put_the_machine.ies.service.CourseService;
 import org.put_the_machine.ies.service.DepartmentService;
 import org.put_the_machine.ies.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +29,7 @@ import java.util.Set;
 public class DevConfig {
 
     @Bean
-    CommandLineRunner insertTestData(UserService userService, DepartmentService depService) {
+    CommandLineRunner insertTestData(UserService userService, DepartmentService depService, DocumentRepository docRepo) {
         return args -> {
             val administrator = new Administrator();
             administrator.setUsername("username");
@@ -57,7 +63,6 @@ public class DevConfig {
             courseSet.add(course);
             dep.setCourses(courseSet);
             depService.save(dep);
-
         };
     }
 }

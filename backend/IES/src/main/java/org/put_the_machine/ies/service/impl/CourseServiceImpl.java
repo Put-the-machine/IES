@@ -1,5 +1,6 @@
 package org.put_the_machine.ies.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.repository.CourseRepository;
 import org.put_the_machine.ies.service.CourseService;
@@ -7,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
+@RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
-    @Autowired
-    CourseRepository repo;
+    private final CourseRepository repo;
 
     @Override
     public Course save(Course course) {
@@ -25,7 +27,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course getById(Long courseId) {
-        return repo.findById(courseId).orElse(null);
+        return repo.findById(courseId)
+                .orElseThrow(() -> new NoSuchElementException("Course not found by id: " + courseId));
     }
 
     @Override

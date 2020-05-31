@@ -23,18 +23,18 @@ public class DepartmentController {
         return service.update(department);
     }
 
-    @GetMapping("departments/{department_id}")
-    public Department getById(@PathVariable("department_id") Long departmentId) {
+    @GetMapping("departments/{departmentId}")
+    public Department getById(@PathVariable Long departmentId) {
         return service.getById(departmentId);
     }
 
-    @DeleteMapping("delete/{department_id}")
-    public void deleteById(@PathVariable("department_id") Long departmentId) {
+    @DeleteMapping("delete/{departmentId}")
+    public void deleteById(@PathVariable Long departmentId) {
         service.deleteById(departmentId);
     }
 
-    @GetMapping("institutes/{institute_id}/departments")
-    public List<Department> getByInstitute(@PathVariable("institute_id") Long instituteId) {
+    @GetMapping("institutes/{instituteId}/departments")
+    public List<Department> getByInstitute(@PathVariable Long instituteId) {
         return service.getDepartmentsByInstituteId(instituteId);
     }
 }
