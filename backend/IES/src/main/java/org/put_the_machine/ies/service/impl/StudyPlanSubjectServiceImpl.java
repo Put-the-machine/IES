@@ -1,6 +1,5 @@
 package org.put_the_machine.ies.service.impl;
 
-import org.put_the_machine.ies.model.CourseProfile;
 import org.put_the_machine.ies.model.StudyPlanSubject;
 import org.put_the_machine.ies.repository.StudyPlanSubjectRepository;
 import org.put_the_machine.ies.service.StudyPlanSubjectService;
@@ -16,22 +15,27 @@ public class StudyPlanSubjectServiceImpl implements StudyPlanSubjectService {
 
 
     @Override
-    public void save(StudyPlanSubject studyPlanSubject) {
-        repo.save(studyPlanSubject);
+    public StudyPlanSubject save(StudyPlanSubject studyPlanSubject) {
+        return repo.save(studyPlanSubject);
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteById(id);
+    public StudyPlanSubject update(StudyPlanSubject studyPlanSubject) {
+        return repo.save(studyPlanSubject);
     }
 
     @Override
-    public StudyPlanSubject getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public void deleteById(Long studyPlanSubjectId) {
+        repo.deleteById(studyPlanSubjectId);
     }
 
     @Override
-    public List<StudyPlanSubject> getAllByCourseProfile(CourseProfile courseProfile) {
-        return repo.findAllByCourseProfile(courseProfile);
+    public StudyPlanSubject getById(Long studyPlanSubjectId) {
+        return repo.findById(studyPlanSubjectId).orElse(null);
+    }
+
+    @Override
+    public List<StudyPlanSubject> getAllByCourseProfileId(Long courseProfileId) {
+        return repo.findAllByCourseProfileId(courseProfileId);
     }
 }

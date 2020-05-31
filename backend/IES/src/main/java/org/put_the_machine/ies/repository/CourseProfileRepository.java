@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CourseProfileRepository extends CrudRepository<CourseProfile, Long> {
-    List<CourseProfile> findAllByCourse(Course course);
+    List<CourseProfile> findAllByCourseId(Long courseId);
 }

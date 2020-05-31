@@ -4,7 +4,6 @@ import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.repository.CourseRepository;
 import org.put_the_machine.ies.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,18 +14,23 @@ public class CourseServiceImpl implements CourseService {
     CourseRepository repo;
 
     @Override
-    public void save(Course course) {
-        repo.save(course);
+    public Course save(Course course) {
+        return repo.save(course);
     }
 
     @Override
-    public Course getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public Course update(Course course) {
+        return repo.save(course);
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteById(id);
+    public Course getById(Long courseId) {
+        return repo.findById(courseId).orElse(null);
+    }
+
+    @Override
+    public void deleteById(Long courseId) {
+        repo.deleteById(courseId);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> getCoursesByDepartment(Department department) {
-        return repo.findAllByDepartment(department);
+    public List<Course> getCoursesByDepartmentId(Long departmentId) {
+        return repo.findAllByDepartmentId(departmentId);
     }
 }

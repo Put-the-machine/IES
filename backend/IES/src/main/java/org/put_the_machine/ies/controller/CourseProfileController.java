@@ -1,36 +1,40 @@
 package org.put_the_machine.ies.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.service.CourseProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/course_profile")
+@RequiredArgsConstructor
 public class CourseProfileController {
-    @Autowired
-    CourseProfileService service;
+    private final CourseProfileService service;
 
-    @PostMapping("save")
-    public void save(@RequestBody CourseProfile courseProfile) {
-        service.save(courseProfile);
+    @PostMapping("course_profiles")
+    public CourseProfile save(@ModelAttribute CourseProfile courseProfile) {
+        return service.save(courseProfile);
     }
 
-    @DeleteMapping("delete")
-    public void deleteById(@PathVariable Long id) {
-        service.deleteById(id);
+    @PutMapping("course_profiles")
+    public CourseProfile update(@ModelAttribute CourseProfile courseProfile) {
+        return service.update(courseProfile);
     }
 
-    @GetMapping("get")
-    public CourseProfile getById(@PathVariable Long id) {
-        return service.getById(id);
+    @DeleteMapping("course_profiles/{course_id}")
+    public void deleteById(@PathVariable("course_id") Long courseProfileId) {
+        service.deleteById(courseProfileId);
     }
 
-    @GetMapping("get_all_by_course")
-    public List<CourseProfile> getById(@PathVariable Course course) {
-        return service.getAllByCourse(course);
+    @GetMapping("course_profiles/{course_profile_id}")
+    public CourseProfile getById(@PathVariable("course_profile_id") Long courseProfileId) {
+        return service.getById(courseProfileId);
+    }
+
+    @GetMapping("courses/{course_id}/course_profiles")
+    public List<CourseProfile> getAllByCourse(@PathVariable("course_id") Long courseId) {
+        return service.getAllByCourseId(courseId);
     }
 }

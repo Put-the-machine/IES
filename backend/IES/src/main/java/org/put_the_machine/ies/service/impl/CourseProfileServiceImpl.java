@@ -15,22 +15,27 @@ public class CourseProfileServiceImpl implements CourseProfileService {
     CourseProfileRepository repo;
 
     @Override
-    public void save(CourseProfile courseProfile) {
-        repo.save(courseProfile);
+    public CourseProfile save(CourseProfile courseProfile) {
+        return repo.save(courseProfile);
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteById(id);
+    public CourseProfile update(CourseProfile courseProfile) {
+        return repo.save(courseProfile);
     }
 
     @Override
-    public CourseProfile getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public void deleteById(Long courseProfileId) {
+        repo.deleteById(courseProfileId);
     }
 
     @Override
-    public List<CourseProfile> getAllByCourse(Course course) {
-        return repo.findAllByCourse(course);
+    public CourseProfile getById(Long courseProfileId) {
+        return repo.findById(courseProfileId).orElse(null);
+    }
+
+    @Override
+    public List<CourseProfile> getAllByCourseId(Long courseId) {
+        return repo.findAllByCourseId(courseId);
     }
 }

@@ -1,5 +1,6 @@
 package org.put_the_machine.ies.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,28 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/department")
+@RequiredArgsConstructor
 public class DepartmentController {
-    @Autowired
-    DepartmentService service;
+    private final DepartmentService service;
 
-    @PostMapping("save")
-    public void save(@RequestBody Department department) {
-        service.save(department);
+    @PostMapping("departments")
+    public Department save(@ModelAttribute Department department) {
+        return service.save(department);
     }
 
-    @GetMapping("get")
-    public Department getById(@PathVariable Long id) {
-        return service.getById(id);
+    @PutMapping("departments")
+    public Department update(@ModelAttribute Department department) {
+        return service.update(department);
     }
 
-    @DeleteMapping("delete")
-    public void deleteById(@PathVariable Long id) {
-        service.deleteById(id);
+    @GetMapping("departments/{department_id}")
+    public Department getById(@PathVariable("department_id") Long departmentId) {
+        return service.getById(departmentId);
     }
 
-    @GetMapping("get_by_institute")
-    public List<Department> getByInstitute(@PathVariable Institute institute) {
-        return service.getDepartmentsByInstitute(institute);
+    @DeleteMapping("delete/{department_id}")
+    public void deleteById(@PathVariable("department_id") Long departmentId) {
+        service.deleteById(departmentId);
+    }
+
+    @GetMapping("institutes/{institute_id}/departments")
+    public List<Department> getByInstitute(@PathVariable("institute_id") Long instituteId) {
+        return service.getDepartmentsByInstituteId(instituteId);
     }
 }

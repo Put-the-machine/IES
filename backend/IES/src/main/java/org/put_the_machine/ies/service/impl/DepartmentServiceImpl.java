@@ -14,22 +14,28 @@ public class DepartmentServiceImpl implements DepartmentService {
     DepartmentRepository repo;
 
     @Override
-    public void save(Department department) {
-        repo.save(department);
+    public Department save(Department department) {
+        return repo.save(department);
     }
 
     @Override
-    public Department getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public Department update(Department department) {
+        return repo.save(department);
+    }
+
+
+    @Override
+    public Department getById(Long departmentId) {
+        return repo.findById(departmentId).orElse(null);
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteById(id);
+    public void deleteById(Long departmentId) {
+        repo.deleteById(departmentId);
     }
 
     @Override
-    public List<Department> getDepartmentsByInstitute(Institute institute) {
-        return repo.findAllByInstitute(institute);
+    public List<Department> getDepartmentsByInstituteId(Long instituteId) {
+        return repo.findAllByInstituteId(instituteId);
     }
 }

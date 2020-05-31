@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends CrudRepository<Course, Long> {
     List<Course> findAll();
-    List<Course> findAllByDepartment(Department department);
+    List<Course> findAllByDepartmentId(Long departmentId);
 }
