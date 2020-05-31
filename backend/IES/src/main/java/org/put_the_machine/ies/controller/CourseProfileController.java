@@ -19,7 +19,7 @@ public class CourseProfileController {
         service.save(courseProfile);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }

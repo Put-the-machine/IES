@@ -18,7 +18,7 @@ public class StudyPlanSubjectController {
         service.save(studyPlanSubject);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }

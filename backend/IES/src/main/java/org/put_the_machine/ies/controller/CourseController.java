@@ -18,7 +18,7 @@ public class CourseController {
         courseService.save(course);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public void deleteById(@PathVariable Long id) {
         courseService.deleteById(id);
     }

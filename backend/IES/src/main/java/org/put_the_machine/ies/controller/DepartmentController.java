@@ -23,7 +23,7 @@ public class DepartmentController {
         return service.getById(id);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }
