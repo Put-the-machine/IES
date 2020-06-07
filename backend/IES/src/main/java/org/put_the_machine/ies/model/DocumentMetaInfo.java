@@ -1,6 +1,8 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.put_the_machine.ies.model.user.Teacher;
 
@@ -11,6 +13,10 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"subjectGroup"})
+@ToString(exclude = {"subjectGroup"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class DocumentMetaInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

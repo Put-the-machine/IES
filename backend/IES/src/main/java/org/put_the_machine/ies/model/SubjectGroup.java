@@ -1,5 +1,7 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.put_the_machine.ies.model.user.Student;
 import org.put_the_machine.ies.model.user.Teacher;
@@ -9,6 +11,9 @@ import java.util.Set;
 
 @Entity
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class SubjectGroup {
 
     public enum SubjectGroupType {

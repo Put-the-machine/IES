@@ -2,6 +2,7 @@ package org.put_the_machine.ies.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.put_the_machine.ies.model.user.Manager;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"managers", "departments"})
+@ToString(exclude = {"managers", "departments"})
 public class Institute {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

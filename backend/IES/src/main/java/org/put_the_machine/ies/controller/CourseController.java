@@ -4,6 +4,7 @@ import lombok.*;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class CourseController {
+
     private final CourseService courseService;
 
     @PostMapping("courses")

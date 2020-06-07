@@ -1,11 +1,16 @@
 package org.put_the_machine.ies.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.put_the_machine.ies.model.CourseProfile;
 import org.put_the_machine.ies.model.user.*;
+import org.put_the_machine.ies.service.FileContentToStudentsService;
 import org.put_the_machine.ies.service.UserService;
 import org.put_the_machine.ies.criteria.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -13,13 +18,14 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final FileContentToStudentsService fileContentToStudentsService;
 
     @GetMapping("users/{userId}")
     User getById(@PathVariable Long userId) {
         return userService.getById(userId);
     }
 
-    @GetMapping
+    @GetMapping("users")
     List<User> userList(@ModelAttribute UserCriteria criteria) {
         return userService.findUsersByCriteria(criteria);
     }
@@ -43,4 +49,5 @@ public class UserController {
     List<Administrator> administratorList(@RequestParam AdministratorCriteria criteria) {
         return userService.findAdministratorsByCriteria(criteria);
     }
+
 }

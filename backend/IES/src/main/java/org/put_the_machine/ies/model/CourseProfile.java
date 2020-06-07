@@ -1,5 +1,9 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -11,6 +15,9 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode(exclude = {"studyPlanSubjects", "course"})
 @ToString(exclude = {"studyPlanSubjects", "course"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class CourseProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +29,9 @@ public class CourseProfile {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "courseProfile", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<StudyPlanSubject> studyPlanSubjects;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "courseProfile", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Group> groups;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Course course;

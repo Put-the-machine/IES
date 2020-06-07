@@ -1,5 +1,7 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.put_the_machine.ies.model.user.Teacher;
 
@@ -10,6 +12,9 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"institute", "teachers", "courses"})
 @ToString(exclude = {"institute", "teachers", "courses"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

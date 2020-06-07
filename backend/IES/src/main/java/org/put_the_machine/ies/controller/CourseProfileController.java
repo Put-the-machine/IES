@@ -4,6 +4,7 @@ package org.put_the_machine.ies.controller;
 import lombok.RequiredArgsConstructor;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.service.CourseProfileService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,34 +1,36 @@
-package org.put_the_machine.ies.service;
+package org.put_the_machine.ies.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.put_the_machine.ies.model.EmailMessage;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.put_the_machine.ies.service.NotificationEmailMessageService;
+import org.put_the_machine.ies.service.UserEmailMessageService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
+@RequiredArgsConstructor
 public class EmailMessageService implements UserEmailMessageService, NotificationEmailMessageService {
 
-    @Autowired
-    JavaMailSender notificationEmailSender;
-    @Autowired
-    JavaMailSender userEmailSender;
+    private final JavaMailSender notificationEmailSender;
+    private final JavaMailSender userEmailSender;
 
     @Override
-    public void sendUserMessage(EmailMessage message) throws MessagingException {
+    public void sendUserMessage(EmailMessage message) {
         sendMessage(userEmailSender, message);
     }
 
     @Override
-    public void sendNotificationMessage(EmailMessage message) throws MessagingException {
+    public void sendNotificationMessage(EmailMessage message) {
         sendMessage(notificationEmailSender, message);
     }
 
-    private void sendMessage(JavaMailSender sender, EmailMessage emailMessage) throws MessagingException {
+    @SneakyThrows
+    private void sendMessage(JavaMailSender sender, EmailMessage emailMessage) {
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setFrom(emailMessage.getFrom() + " <" + ((JavaMailSenderImpl) sender).getUsername() + ">");

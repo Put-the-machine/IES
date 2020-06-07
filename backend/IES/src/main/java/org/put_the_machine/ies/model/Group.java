@@ -5,30 +5,37 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.put_the_machine.ies.model.user.Manager;
+import org.put_the_machine.ies.model.user.Student;
 
 import javax.persistence.*;
+import java.util.Set;
+
 
 @Entity
+@Table(name = "GRP")
 @Data
-@ToString(exclude = {"courseProfile"})
-@EqualsAndHashCode(exclude = {"courseProfile"})
+@EqualsAndHashCode(exclude = {"students"})
+@ToString(exclude = {"students"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class StudyPlanSubject {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
-    private int semester;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Subject subject;
+    private Long semester;
 
-    private boolean isTest;
-    private boolean isExam;
-    private boolean isCourseWork;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "GROUP_STUDENT",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private Set<Student> students;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private CourseProfile courseProfile;

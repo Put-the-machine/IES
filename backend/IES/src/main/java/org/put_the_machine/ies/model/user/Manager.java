@@ -9,10 +9,8 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
+@EqualsAndHashCode(exclude = {"institute"}, callSuper = true)
 public class Manager extends User {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Institute institute;

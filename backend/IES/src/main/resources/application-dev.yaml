@@ -11,8 +11,8 @@ spring:
       ddl-auto: create-drop
   mail:
     notification:
-      username: notification.ies.sstu@gmail.com
-      password: rikafurude07151129
+      username: ${NOTIFICATION_EMAIL}
+      password: ${NOTIFICATION_EMAIL_PASSWORD}
     user:
       username: aaa
       password: bbb

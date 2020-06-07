@@ -1,7 +1,9 @@
 package org.put_the_machine.ies.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.put_the_machine.ies.model.Email;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,12 +17,20 @@ import java.util.Collection;
 @Getter
 @Setter
 @EqualsAndHashCode
-@Table(name = "USR")
+@Table(name = "USR",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "address")
+})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public abstract class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     private String fullName;
