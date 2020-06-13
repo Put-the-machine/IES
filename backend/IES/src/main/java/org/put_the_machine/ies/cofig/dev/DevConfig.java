@@ -1,4 +1,4 @@
-package org.put_the_machine.ies.cofig;
+package org.put_the_machine.ies.cofig.dev;
 
 import lombok.val;
 import org.apache.commons.text.RandomStringGenerator;
@@ -29,20 +29,17 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.apache.commons.text.CharacterPredicates.LETTERS;
 import static org.apache.commons.text.CharacterPredicates.DIGITS;
+import static org.apache.commons.text.CharacterPredicates.LETTERS;
 
 @Profile("dev")
 @Configuration
 @PropertySource("classpath:application-dev.yaml")
 public class DevConfig {
-
-    private int t = 4;
 
     public ViewResolver thymeleafViewResolver() {
 
@@ -55,7 +52,6 @@ public class DevConfig {
         return viewResolver;
     }
 
-    // Thymeleaf template engine with Spring integration
     @Bean
     public SpringTemplateEngine thymeleafTemplateEngine() {
 
@@ -71,24 +67,17 @@ public class DevConfig {
         return new SpringResourceTemplateResolver();
     }
 
-    // Thymeleaf template resolver serving HTML 5
     @Bean
     public ITemplateResolver thymeleafTemplateResolver() {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 
-//        templateResolver.setPrefix("templates/");
         templateResolver.setCacheable(false);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
 
         return templateResolver;
-    }
-
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(8);
     }
 
     @Bean

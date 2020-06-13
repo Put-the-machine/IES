@@ -1,6 +1,27 @@
 spring:
   profiles:
     active: @spring.profiles.active@
+  mail:
+    notification:
+      username: ${NOTIFICATION_EMAIL}
+      password: ${NOTIFICATION_EMAIL_PASSWORD}
+    user:
+      username: ${USER_MESSAGE_EMAIL}
+      password: ${USER_MESSAGE_EMAIL_PASSWORD}
+    properties:
+      mail:
+        debug: true
+        transport:
+          protocol: smtp
+        smtp:
+          host: smtp.gmail.com
+          port: 587
+          auth: true
+          starttls:
+            enable: true
+          socketFactory:
+            port: 587
+            class: javax.net.ssl.SSLSocketFactory
 
 documents:
   path: ies_documents

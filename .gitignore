@@ -29,3 +29,10 @@ hs_err_pid*
 # frontend dirs
 /frontend/node_modules
 /frontend/dist
+/backend/IES/src/main/resources/spa/
+/backend/IES/src/main/resources/static/
+
+
+# docker
+.env
+/docker/postgres-data/

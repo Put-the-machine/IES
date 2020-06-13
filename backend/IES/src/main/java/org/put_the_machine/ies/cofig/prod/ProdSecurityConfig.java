@@ -1,4 +1,4 @@
-package org.put_the_machine.ies.cofig;
+package org.put_the_machine.ies.cofig.prod;
 
 import lombok.RequiredArgsConstructor;
 import org.put_the_machine.ies.service.UserService;
@@ -11,10 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@Profile("dev")
+@Profile("prod")
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class ProdSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
@@ -24,14 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/**")
-                .authenticated()
+                .permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll();
 
         http.csrf().disable();
-        http.headers().frameOptions().disable();
+
     }
 
     @Override

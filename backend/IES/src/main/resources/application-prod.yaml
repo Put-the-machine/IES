@@ -1,10 +1,9 @@
 spring:
   datasource:
-    url: ${DATABASE_URL}
+    url: ${DATABASE_URL}/${DATABASE_NAME}
     driverClassName: org.postgresql.Driver
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: none
-    database: postgresql
+      ddl-auto: create-drop

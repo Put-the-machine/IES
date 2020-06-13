@@ -1,0 +1,34 @@
+version: '3.0'
+
+services:
+
+  db:
+    image: postgres
+    container_name: ies-postgres
+    restart: always
+    volumes:
+    - ./postgresql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: pwd
+ 
+  app:
+    image: ies-app
+    container_name: ies-app
+    restart: always
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_URL: jdbc:postgresql://db:5432
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      NOTIFICATION_EMAIL: ${NOTIFICATION_EMAIL}
+      NOTIFICATION_EMAIL_PASSWORD: ${NOTIFICATION_EMAIL_PASSWORD}
+      USER_MESSAGE_EMAIL: ${USER_MESSAGE_EMAIL}
+      USER_MESSAGE_EMAIL_PASSWORD: ${USER_MESSAGE_EMAIL_PASSWORD}
+    ports:
+    - 8080:8080  

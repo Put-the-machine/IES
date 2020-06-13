@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 public class CourseProfileServiceImpl implements CourseProfileService {
+
     private final CourseProfileRepository repo;
 
     @Override
