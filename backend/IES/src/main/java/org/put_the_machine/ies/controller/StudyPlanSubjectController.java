@@ -33,7 +33,7 @@ public class StudyPlanSubjectController {
     }
 
     @GetMapping("courses/{courseProfileId}/study_plan_subjects")
-    public List<StudyPlanSubject> getByInstitute(@PathVariable Long courseProfileId) {
+    public List<StudyPlanSubject> getByCourseProfileId(@PathVariable Long courseProfileId) {
         return service.getAllByCourseProfileId(courseProfileId);
     }
 }

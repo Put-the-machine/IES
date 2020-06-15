@@ -13,8 +13,8 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"studyPlanSubjects", "course"})
-@ToString(exclude = {"studyPlanSubjects", "course"})
+@EqualsAndHashCode(exclude = {"studyPlanSubjects", "course", "groups"})
+@ToString(exclude = {"studyPlanSubjects", "course", "groups"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
