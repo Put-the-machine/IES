@@ -25,7 +25,6 @@ public class Subject {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<StudyPlanSubject> studyPlanSubjects;
 
-    private Integer semester;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubjectGroup> subjectGroups;

@@ -10,7 +10,6 @@ import org.put_the_machine.ies.service.FileContentToStudentsService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,7 +43,6 @@ public class FileContentToStudentsServiceImpl implements FileContentToStudentsSe
                 student.setFullName(fullName);
                 student.setUsername(fullNameToUsername(fullName));
                 student.setEmail(new Email(email));
-                student.setYear(0);
                 student.setGroups(Collections.singleton(group));
                 group.getStudents().add(student);
                 } catch (NullPointerException e) {

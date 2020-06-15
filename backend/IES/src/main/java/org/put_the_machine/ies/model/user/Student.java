@@ -16,9 +16,8 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"subjectGroups", "groups"}, callSuper = true)
+@ToString(exclude = {"subjectGroups", "groups"}, callSuper = true)
 public class Student extends User {
-    private Integer year;
-
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubjectGroup> subjectGroups;
