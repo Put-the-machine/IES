@@ -12,9 +12,4 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @PropertySource("classpath:application-prod.yaml")
 public class ProdConfig {
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(16);
-    }
-
 }

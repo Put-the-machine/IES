@@ -1,16 +1,12 @@
 package org.put_the_machine.ies.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.val;
-import org.put_the_machine.ies.model.CourseProfile;
+import org.put_the_machine.ies.criteria.*;
 import org.put_the_machine.ies.model.user.*;
 import org.put_the_machine.ies.service.FileContentToStudentsService;
 import org.put_the_machine.ies.service.UserService;
-import org.put_the_machine.ies.criteria.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController

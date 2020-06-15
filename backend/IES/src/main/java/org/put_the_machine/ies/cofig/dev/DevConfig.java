@@ -1,7 +1,6 @@
 package org.put_the_machine.ies.cofig.dev;
 
 import lombok.val;
-import org.apache.commons.text.RandomStringGenerator;
 import org.put_the_machine.ies.model.Course;
 import org.put_the_machine.ies.model.CourseProfile;
 import org.put_the_machine.ies.model.Department;
@@ -33,14 +32,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.apache.commons.text.CharacterPredicates.DIGITS;
-import static org.apache.commons.text.CharacterPredicates.LETTERS;
-
 @Profile("dev")
 @Configuration
 @PropertySource("classpath:application-dev.yaml")
 public class DevConfig {
 
+    @Bean
     public ViewResolver thymeleafViewResolver() {
 
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
@@ -78,14 +75,6 @@ public class DevConfig {
         templateResolver.setCharacterEncoding("UTF-8");
 
         return templateResolver;
-    }
-
-    @Bean
-    public RandomStringGenerator getPasswordGenerator() {
-        return new RandomStringGenerator.Builder()
-                .withinRange('0', 'z')
-                .filteredBy(LETTERS, DIGITS)
-                .build();
     }
 
     @Bean
