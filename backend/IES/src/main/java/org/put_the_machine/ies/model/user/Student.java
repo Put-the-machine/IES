@@ -1,5 +1,6 @@
 package org.put_the_machine.ies.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.put_the_machine.ies.model.Course;
 import org.put_the_machine.ies.model.Group;
@@ -18,9 +19,12 @@ import java.util.Set;
 public class Student extends User {
     private Integer year;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubjectGroup> subjectGroups;
 
+
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Group> groups;
 
