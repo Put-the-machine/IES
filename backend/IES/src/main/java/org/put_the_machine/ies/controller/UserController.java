@@ -5,6 +5,7 @@ import org.put_the_machine.ies.criteria.*;
 import org.put_the_machine.ies.model.user.*;
 import org.put_the_machine.ies.service.FileContentToStudentsService;
 import org.put_the_machine.ies.service.UserService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public class UserController {
 
     private final UserService userService;
     private final FileContentToStudentsService fileContentToStudentsService;
+
+    @GetMapping("who-am-i")
+    User whoAmI(@AuthenticationPrincipal User user){
+        return user;
+    }
 
     @GetMapping("users/{userId}")
     User getById(@PathVariable Long userId) {

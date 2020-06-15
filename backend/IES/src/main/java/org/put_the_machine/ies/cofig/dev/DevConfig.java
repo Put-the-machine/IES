@@ -85,7 +85,7 @@ public class DevConfig {
             CourseProfileService courseProfileService) {
         return args -> {
             val administrator = new Administrator();
-            administrator.setUsername("username");
+                administrator.setUsername("username");
             administrator.setPassword("password");
             administrator.setEmail(new Email("test@gmail.com"));
             userService.save(administrator);
