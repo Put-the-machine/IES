@@ -1,5 +1,7 @@
 package org.put_the_machine.ies.cofig.dev;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import lombok.val;
 import org.put_the_machine.ies.model.*;
 import org.put_the_machine.ies.model.user.Administrator;
@@ -16,7 +18,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.MimeType;
 import org.springframework.web.servlet.ViewResolver;
@@ -36,6 +37,11 @@ import java.util.Set;
 @Configuration
 @PropertySource("classpath:application-dev.yaml")
 public class DevConfig {
+
+    @Bean
+    public Module datatypeHibernateModule() {
+        return new Hibernate5Module();
+    }
 
     @Bean
     public ViewResolver thymeleafViewResolver() {
