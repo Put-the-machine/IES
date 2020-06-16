@@ -8,6 +8,7 @@ import org.put_the_machine.ies.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,8 +19,8 @@ public class UserController {
     private final FileContentToStudentsService fileContentToStudentsService;
 
     @GetMapping("who-am-i")
-    User whoAmI(@AuthenticationPrincipal User user){
-        return user;
+    User whoAmI(@AuthenticationPrincipal Principal principal){
+        return userService.findUserByUsername(principal.getName());
     }
 
     @GetMapping("users/{userId}")

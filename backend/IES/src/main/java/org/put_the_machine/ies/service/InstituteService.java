@@ -12,4 +12,7 @@ public interface InstituteService {
     void deleteById(Long id);
 
     List<Institute> getInstitutesWithFullDepartmentInfo();
+
+    List<Institute> getAll();
+
 }

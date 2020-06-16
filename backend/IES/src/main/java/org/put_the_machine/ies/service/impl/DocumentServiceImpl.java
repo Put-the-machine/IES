@@ -24,7 +24,7 @@ public class DocumentServiceImpl implements DocumentService {
 
         DocumentMetaInfo metaInfo = new DocumentMetaInfo();
         metaInfo.setCreationTime(LocalDateTime.now());
-        metaInfo.setIsFile(false);
+        metaInfo.setIsFile(true);
         metaInfo.setMimeType(MimeType.valueOf(Objects.requireNonNull(document.getContentType())));
         metaInfo.setName(document.getName());
         metaInfo.setSubjectGroup(subjectGroup);

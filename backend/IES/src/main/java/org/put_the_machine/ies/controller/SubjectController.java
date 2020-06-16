@@ -6,7 +6,7 @@ import org.put_the_machine.ies.service.SubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class SubjectController {
 

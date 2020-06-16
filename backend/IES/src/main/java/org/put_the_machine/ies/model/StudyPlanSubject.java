@@ -2,6 +2,7 @@ package org.put_the_machine.ies.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -13,8 +14,9 @@ import javax.persistence.*;
 @ToString(exclude = {"courseProfile"})
 @EqualsAndHashCode(exclude = {"courseProfile"})
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
+        generator = JSOGGenerator.class,
         property = "id")
+
 public class StudyPlanSubject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

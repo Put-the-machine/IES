@@ -83,7 +83,8 @@ public class DevConfig {
             DepartmentService depService,
             DocumentRepository docRepo,
             CourseProfileService courseProfileService,
-            InstituteService instituteService) {
+            InstituteService instituteService,
+            PasswordEncoder passwordEncoder) {
         return args -> {
             val administrator = new Administrator();
             administrator.setUsername("username");
@@ -94,7 +95,7 @@ public class DevConfig {
             val student = new Student();
             student.setUsername("student");
             student.setSubjectGroups(new HashSet<>());
-            student.setPassword("password");
+            student.setPassword(passwordEncoder.encode("password"));
             student.setFullName("Даниил Яндыбаев Игоревич");
             student.setEmail(new Email("test1@gmail.com"));
 
@@ -109,7 +110,7 @@ public class DevConfig {
             val teacher = new Teacher();
             teacher.setFullName("Александр Вадимович");
             teacher.setUsername("teacher");
-            teacher.setPassword("password");
+            teacher.setPassword(passwordEncoder.encode("password"));
             teacher.setEmail(new Email("test3@gmail.com"));
             //userService.save(teacher);
 
@@ -230,6 +231,7 @@ public class DevConfig {
             doc1.setMimeType(MimeType.valueOf("plain/text"));
             doc1.setIsFile(true);
             doc1.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(doc1);
 
             DocumentMetaInfo doc2 = new DocumentMetaInfo();
             doc2.setRealPath("theBestTasksSpring.doc");
@@ -239,6 +241,7 @@ public class DevConfig {
             doc2.setMimeType(MimeType.valueOf("plain/text"));
             doc2.setIsFile(true);
             doc2.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(doc2);
 
 
             SubjectGroup lectureSubjectGroup = new SubjectGroup();
@@ -322,7 +325,9 @@ public class DevConfig {
 
             instituteService.save(ietipInstitute);
             //--------------------------------------------------------------------------------
-            System.out.println(student.getId());
+            for (Institute institute : instituteService.getInstitutesWithFullDepartmentInfo()) {
+                System.out.println(institute);
+            }
         };
     }
 }

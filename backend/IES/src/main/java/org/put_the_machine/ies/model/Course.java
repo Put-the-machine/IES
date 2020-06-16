@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.*;
 import org.put_the_machine.ies.model.user.Student;
 
@@ -16,7 +17,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude =  {"courseProfiles", "defaultProfile", "department"})
 @ToString(exclude = {"courseProfiles", "defaultProfile", "department"})
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
+        generator = JSOGGenerator.class,
         property = "id")
 public class Course {
     @Id

@@ -31,6 +31,8 @@ public interface UserService extends UserDetailsService {
     void saveGroups(List<Group> groups);
 
     UserDetails loadUserByUsername(String s);
+
+    User findUserByUsername(String name);
 }
 
 

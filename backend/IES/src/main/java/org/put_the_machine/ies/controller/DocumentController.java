@@ -31,9 +31,9 @@ public class DocumentController {
         service.deleteById(documentId);
     }
 
-    @GetMapping("documents/{documentId}")
+    @GetMapping("documents/{documentMetaInfoId}")
     public void getDocumentByMetaInfo(HttpServletResponse response,
-                                      @PathVariable DocumentMetaInfo documentMetaInfo) throws IOException {
+                                      @PathVariable("documentMetaInfoId") DocumentMetaInfo documentMetaInfo) throws IOException {
         response.setContentType(documentMetaInfo.getMimeType().getType());
         response.setHeader("Content-Disposition", "attachment; filename="+documentMetaInfo.getName());
 

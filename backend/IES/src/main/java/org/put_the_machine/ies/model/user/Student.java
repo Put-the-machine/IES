@@ -1,8 +1,6 @@
 package org.put_the_machine.ies.model.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.put_the_machine.ies.model.Course;
 import org.put_the_machine.ies.model.Group;
 import org.put_the_machine.ies.model.SubjectGroup;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,12 +15,10 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"subjectGroups", "groups"}, callSuper = true)
 @ToString(exclude = {"subjectGroups", "groups"}, callSuper = true)
 public class Student extends User {
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubjectGroup> subjectGroups;
 
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Group> groups;
 

@@ -36,4 +36,9 @@ public class InstituteController {
     public List<Institute> getInstitutesWithFullDepartmentInfo() {
         return instituteService.getInstitutesWithFullDepartmentInfo();
     }
+
+    @GetMapping("institutes")
+    public List<Institute> getAll() {
+        return instituteService.getAll();
+    }
 }
