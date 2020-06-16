@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface InstituteRepository extends CrudRepository<Institute, Long>, JpaSpecificationExecutor<Institute> {
 
-    @Query("SELECT i FROM Institute AS i " +
-            "JOIN FETCH i.departments AS d " +
-            "JOIN FETCH d.courses AS c " +
-            "JOIN FETCH c.courseProfiles")
+    @Query("SELECT DISTINCT i FROM Institute AS i " +
+            "LEFT JOIN FETCH i.departments AS d " +
+            "LEFT JOIN FETCH d.courses AS c " +
+            "LEFT JOIN FETCH c.courseProfiles")
     List<Institute> findAllWithFullInfoAboutDepartments();
 }

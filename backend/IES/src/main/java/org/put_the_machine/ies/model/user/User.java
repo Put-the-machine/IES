@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.*;
 import org.put_the_machine.ies.model.Email;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +24,7 @@ import java.util.Collection;
         @UniqueConstraint(columnNames = "address")
 })
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
+        generator = JSOGGenerator.class,
         property = "id")
 public abstract class User implements UserDetails {
     @Id

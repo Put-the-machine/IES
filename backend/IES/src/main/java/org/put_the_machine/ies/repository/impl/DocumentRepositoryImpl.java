@@ -17,7 +17,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     private File dir;
 
     @Override
-    synchronized public String saveAndReturnPath(MultipartFile file) throws IOException {
+    public String saveAndReturnPath(MultipartFile file) throws IOException {
         createDirIfNecessary();
 
         File resultFile = saveFileToDir(file, dir);

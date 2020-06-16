@@ -1,6 +1,7 @@
 package org.put_the_machine.ies.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.IterableUtils;
 import org.put_the_machine.ies.model.Institute;
 import org.put_the_machine.ies.repository.InstituteRepository;
 import org.put_the_machine.ies.service.InstituteService;
@@ -37,5 +38,10 @@ public class InstituteServiceImpl implements InstituteService {
     @Override
     public List<Institute> getInstitutesWithFullDepartmentInfo() {
         return instituteRepository.findAllWithFullInfoAboutDepartments();
+    }
+
+    @Override
+    public List<Institute> getAll() {
+        return IterableUtils.toList(instituteRepository.findAll());
     }
 }

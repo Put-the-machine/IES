@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(exclude = {"studyPlanSubjects", "course", "groups"})
 @ToString(exclude = {"studyPlanSubjects", "course", "groups"})
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
+        generator = JSOGGenerator.class,
         property = "id")
 public class CourseProfile {
     @Id

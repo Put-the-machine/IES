@@ -1,5 +1,7 @@
 package org.put_the_machine.ies.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,6 +14,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"managers", "departments"})
 @ToString(exclude = {"managers", "departments"})
+@JsonIdentityInfo(generator= JSOGGenerator.class)
 public class Institute {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

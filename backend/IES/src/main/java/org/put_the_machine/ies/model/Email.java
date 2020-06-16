@@ -1,9 +1,7 @@
 package org.put_the_machine.ies.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.*;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.*;
 import org.put_the_machine.ies.exception.EmailValidationException;
 
@@ -14,6 +12,7 @@ import javax.persistence.Transient;
 @Getter
 @RequiredArgsConstructor
 @EqualsAndHashCode
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Email {
     @Transient
     @JsonIgnore
