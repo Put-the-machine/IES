@@ -9,6 +9,7 @@ import org.springframework.util.MimeType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -19,7 +20,7 @@ public class DocumentServiceImpl implements DocumentService {
     private final DocumentMetaInfoRepository documentMetaInfoRepo;
 
     @Override
-    public DocumentMetaInfo save(MultipartFile document, SubjectGroup subjectGroup, String path) throws IOException {
+    public DocumentMetaInfo save(MultipartFile document, SubjectGroup subjectGroup, String path) throws Exception {
         String realPath = documentRepo.saveAndReturnPath(document);
 
         DocumentMetaInfo metaInfo = new DocumentMetaInfo();
@@ -59,5 +60,10 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public MultipartFile getFileFromDocumentMetaInfo(DocumentMetaInfo documentMetaInfo) throws IOException {
         return documentRepo.getByDocumentMetaInfo(documentMetaInfo);
+    }
+
+    @Override
+    public Path getDocumentPath(DocumentMetaInfo documentMetaInfo) {
+        return documentRepo.getDocumentPath(documentMetaInfo);
     }
 }
