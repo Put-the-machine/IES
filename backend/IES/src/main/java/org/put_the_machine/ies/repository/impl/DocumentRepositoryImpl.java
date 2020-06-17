@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
@@ -17,7 +18,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     private File dir;
 
     @Override
-    public String saveAndReturnPath(MultipartFile file) throws IOException {
+    public String saveAndReturnPath(MultipartFile file) throws Exception {
         createDirIfNecessary();
 
         File resultFile = saveFileToDir(file, dir);
@@ -31,9 +32,9 @@ public class DocumentRepositoryImpl implements DocumentRepository {
             dir.mkdirs();
     }
 
-    private File saveFileToDir(MultipartFile file, File dir) throws IOException {
+    private File saveFileToDir(MultipartFile file, File dir) throws Exception {
         File createdFile = File.createTempFile("file", ".file", dir);
-        file.transferTo(createdFile);
+        file.transferTo(createdFile.getAbsoluteFile());
         return createdFile;
     }
 
@@ -94,5 +95,10 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     @Override
     public void deleteByPath(String path) throws IOException {
         Files.delete(Paths.get(path));
+    }
+
+    @Override
+    public Path getDocumentPath(DocumentMetaInfo documentMetaInfo) {
+        return Paths.get(dir.getAbsolutePath(), documentMetaInfo.getRealPath());
     }
 }

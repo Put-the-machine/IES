@@ -16,19 +16,19 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class DocumentController {
-    private final DocumentService service;
+    private final DocumentService documentService;
 
     @PostMapping("subject_groups/{subjectGroupId}/documents")
     public DocumentMetaInfo save(
             @ModelAttribute("document") MultipartFile document,
             @PathVariable("subjectGroupId") SubjectGroup subjectGroup,
-            @ModelAttribute("path") String path) throws IOException {
-        return service.save(document, subjectGroup, path);
+            @ModelAttribute("path") String path) throws Exception {
+        return documentService.save(document, subjectGroup, path);
     }
 
     @DeleteMapping("documents/{documentId}")
     public void deleteById(@PathVariable Long documentId) throws IOException {
-        service.deleteById(documentId);
+        documentService.deleteById(documentId);
     }
 
     @GetMapping("documents/{documentMetaInfoId}")
@@ -36,12 +36,11 @@ public class DocumentController {
                                       @PathVariable("documentMetaInfoId") DocumentMetaInfo documentMetaInfo) throws IOException {
         response.setContentType(documentMetaInfo.getMimeType().getType());
         response.setHeader("Content-Disposition", "attachment; filename="+documentMetaInfo.getName());
-
-        Files.copy(Paths.get(documentMetaInfo.getRealPath()), response.getOutputStream());
+        Files.copy(documentService.getDocumentPath(documentMetaInfo), response.getOutputStream());
     }
 
     @GetMapping("subject_groups/{subjectGroupId}/documents")
     public List<DocumentMetaInfo> getAllBySubjectGroupId(@PathVariable Long subjectGroupId) {
-        return service.getAllBySubjectGroupId(subjectGroupId);
+        return documentService.getAllBySubjectGroupId(subjectGroupId);
     }
 }

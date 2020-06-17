@@ -5,10 +5,11 @@ import org.put_the_machine.ies.model.SubjectGroup;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 public interface DocumentService {
-    DocumentMetaInfo save(MultipartFile document, SubjectGroup subjectGroup, String path) throws IOException;
+    DocumentMetaInfo save(MultipartFile document, SubjectGroup subjectGroup, String path) throws Exception;
 
     DocumentMetaInfo getById(Long departmentId);
 
@@ -17,4 +18,6 @@ public interface DocumentService {
     List<DocumentMetaInfo> getAllBySubjectGroupId(Long groupSubjectId);
 
     MultipartFile getFileFromDocumentMetaInfo(DocumentMetaInfo documentMetaInfo) throws IOException;
+
+    Path getDocumentPath(DocumentMetaInfo documentMetaInfo);
 }

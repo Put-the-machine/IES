@@ -31,7 +31,7 @@ public class DocumentMetaInfo {
 
     private LocalDateTime creationTime;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private SubjectGroup subjectGroup;
     private Boolean isFile;
 }
