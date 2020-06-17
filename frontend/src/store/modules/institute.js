@@ -1,41 +1,43 @@
+import Axios from "axios";
+import Querystring from "query-string";
+import jsog from "jsog";
+
 export default {
   state: {
-    institutes: [
-      {
-        name: "ИнПИТ",
-        programs: [
-          { id: 0, name: "Программная инженерия" },
-          { id: 1, name: "Информатика и вычислительная техника" },
-          { id: 2, name: "Прикладная информатика" },
-          { id: 3, name: "Реклама" },
-          { id: 4, name: "Дизайн" },
-          { id: 5, name: "Информационная безопасность" }
-        ]
-      },
-      {
-        name: "АутПИТ",
-        programs: [
-          { id: 6, name: "Истерика программистов" },
-          { id: 7, name: "Апатия разработчиков" },
-          { id: 8, name: "Депрессия фронтендеров" },
-          { id: 9, name: "Комментирование некомментиуемого" },
-          { id: 10, name: "JavaScript-комьюнити беспощадно" }
-        ]
-      },
-      {
-        name: "Ну и еще для теста",
-        programs: [
-          { id: 11, name: "Искусство изучения десятки технологий за ночь" },
-          { id: 12, name: "Мастерство не умереть после этого" },
-          { id: 13, name: "Чертова самоизоляция" },
-          { id: 14, name: "Как я тебя ненавижу" },
-          { id: 15, name: "Пойду я спать" }
-        ]
-      }
-    ]
+    institutes: []
   },
-  mutations: {},
-  actions: {},
+
+  actions: {
+    async load_full_info({ commit }) {
+      try {
+        await Axios.post(
+          "http://localhost:8079/login",
+          Querystring.stringify({
+            username: "student",
+            password: "password"
+          }),
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          }
+        );
+      } catch {
+        console.log("404 after login");
+      }
+
+      await Axios.get(
+        "http://localhost:8079/institutes/full_department_info"
+      ).then(response => commit("institutes", jsog.decode(response.data)));
+    }
+  },
+
+  mutations: {
+    institutes(state, institutes) {
+      state.institutes = institutes;
+    }
+  },
+
   getters: {
     getInstitutes(state) {
       return state.institutes;

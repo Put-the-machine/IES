@@ -1,6 +1,6 @@
 <template lang="pug">
-  b-nav-item-dropdown.m-2(:text="user.fullname" ref='dropdown' size="sm" right)
-    b-dropdown-header {{ user.fullname }}
+  b-nav-item-dropdown.m-2(:text="user.fullName" ref='dropdown' size="sm" right)
+    b-dropdown-header {{ user.username }}
     b-dropdown-item-button(@click="logout()") Выйти
 </template>
 

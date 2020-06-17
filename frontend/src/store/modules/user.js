@@ -1,33 +1,57 @@
+import Axios from "axios";
+import Querystring from "query-string";
+import jsog from "jsog";
+
+const nullUser = {
+  id: -1,
+  authorities: null,
+  email: "",
+  fullName: "",
+  year: null,
+  username: null
+};
+
 export default {
   state: {
     is_logged: false,
-    user: {
-      id: null,
-      fullname: "",
-      role: "",
-      course_id: null,
-      current_sem: null
-    }
+    user: nullUser
   },
 
   actions: {
-    auth({ commit }, form) {
-      let request = {
-        POST: {
-          url: "/api/users.login",
-          data: form
-        }
-      };
+    async auth({ commit }, form) {
+      const baseUrl = "http://localhost:8079/";
 
-      alert(JSON.stringify(request, null, "    "));
+      try {
+        await Axios.post(
+          baseUrl + "login",
+          Querystring.stringify({
+            username: form.login,
+            password: form.password
+          }),
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            withCredentials: true
+          }
+        );
+      } catch {
+        console.log("404 after login");
+      } finally {
+        let userdata = null;
 
-      commit("autorize", {
-        id: 1,
-        fullname: "Имя Фамилия",
-        role: "student",
-        course_id: 1,
-        current_sem: 1
-      });
+        await Axios.get(baseUrl + "who-am-i", {
+          withCredentials: true
+        }).then(response => {
+          userdata = jsog.decode(response.data);
+        });
+
+        await Axios.get(baseUrl + "students/" + userdata.id + "/groups", {
+          withCredentials: true
+        }).then(response => (userdata.groups = jsog.decode(response.data)));
+
+        commit("autorize", userdata);
+      }
     },
 
     logout({ commit }, id) {
@@ -52,8 +76,7 @@ export default {
     },
 
     logout(state) {
-      state.user.fullname = "";
-      state.user.role = "";
+      state.user = nullUser;
       state.is_logged = false;
     }
   },
@@ -65,6 +88,12 @@ export default {
 
     user(state) {
       return state.user;
+    },
+
+    user_role(state) {
+      return state.user.authorities
+        ? state.user.authorities[0].toLowerCase()
+        : "";
     }
   }
 };
