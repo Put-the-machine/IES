@@ -34,7 +34,7 @@ public class SubjectGroupController {
         subjectGroupService.deleteById(subjectGroupId);
     }
 
-    @GetMapping("subject_groups/{subjectId}/{studentId}")
+    @GetMapping("subjects/{subjectId}/students/{studentId}")
     public List<SubjectGroup> getAllBySubjectIdAndStudentId(@PathVariable Long subjectId,
                                                             @PathVariable Long studentId) {
         return subjectGroupService.getAllBySubjectIdAndStudentId(subjectId, studentId);

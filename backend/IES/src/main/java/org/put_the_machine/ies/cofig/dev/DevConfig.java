@@ -249,6 +249,52 @@ public class DevConfig {
             doc2.setCreationTime(LocalDateTime.now());
             practiceSubjectGroup.getDocumentMetaInfos().add(doc2);
 
+            DocumentMetaInfo folder1 = new DocumentMetaInfo();
+            folder1.setVirtualPath("");
+            folder1.setIsFile(false);
+            folder1.setSubjectGroup(practiceSubjectGroup);
+            folder1.setName("Карате-пацаны лучшие задачи");
+            folder1.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(folder1);
+
+            DocumentMetaInfo doc3 = new DocumentMetaInfo();
+            doc3.setRealPath("theBestTaskAboutKarate.doc");
+            doc3.setVirtualPath("Карате-пацаны лучшие задачи");
+            doc3.setSubjectGroup(practiceSubjectGroup);
+            doc3.setName("Карате-пацан 1");
+            doc3.setMimeType(MimeType.valueOf("plain/text"));
+            doc3.setIsFile(true);
+            doc3.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(doc3);
+
+            DocumentMetaInfo doc4 = new DocumentMetaInfo();
+            doc4.setRealPath("theBestTaskAboutKarate2.doc");
+            doc4.setVirtualPath("Карате-пацаны лучшие задачи");
+            doc4.setSubjectGroup(practiceSubjectGroup);
+            doc4.setName("Карате-пацан 2");
+            doc4.setMimeType(MimeType.valueOf("plain/text"));
+            doc4.setIsFile(true);
+            doc4.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(doc4);
+
+            DocumentMetaInfo folder2 = new DocumentMetaInfo();
+            folder2.setVirtualPath("Карате-пацаны лучшие задачи");
+            folder2.setIsFile(false);
+            folder2.setSubjectGroup(practiceSubjectGroup);
+            folder2.setName("Карате-пацан история создания");
+            folder2.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(folder2);
+
+            DocumentMetaInfo doc5 = new DocumentMetaInfo();
+            doc5.setRealPath("theBestTaskAboutKarate2.doc");
+            doc5.setVirtualPath("Карате-пацаны лучшие задачи/Карате-пацан история создания");
+            doc5.setSubjectGroup(practiceSubjectGroup);
+            doc5.setName("Режиссерская версия");
+            doc5.setMimeType(MimeType.valueOf("plain/text"));
+            doc5.setIsFile(true);
+            doc5.setCreationTime(LocalDateTime.now());
+            practiceSubjectGroup.getDocumentMetaInfos().add(doc5);
+
 
             SubjectGroup lectureSubjectGroup = new SubjectGroup();
             lectureSubjectGroup.setDocumentMetaInfos(new HashSet<>());
