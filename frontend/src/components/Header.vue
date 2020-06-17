@@ -14,13 +14,28 @@
       )
 
       b-collapse#nav-collapse(is-nav)
-        b-navbar-nav
-          b-nav-item(
+        b-navbar-nav(
             v-for="item in nav_items"
             :key="item.name"
+        )
+          b-nav-item(
+            v-if="!item.is_dropdown"
             :to="item.link"
             :class="{ active: navActiveLink == item.link }"
           ) {{ item.name }}
+
+          b-nav-item-dropdown.m-2(
+            v-else
+            text="Учебный план"
+            ref='dropdown'
+            size="sm"
+            :class="{ active: navActiveLink == '/studyplan' }"
+          )
+            b-dropdown-item(
+              v-for="group in user.groups"
+              :key="group.id"
+              :to="'/curriculum/' + group.courseProfile.id"
+            ) {{ group.name }}
         
         b-navbar-nav.ml-auto
           UserDropdown(v-if="logged")
@@ -47,13 +62,17 @@ export default {
   },
 
   computed: {
+    user_role: function() {
+      return this.$store.getters.user_role;
+    },
+
     nav_items: function() {
       let nav_dict = {
         "": [{ name: "Главная", link: "/" }],
 
         student: [
           { name: "Главная", link: "/" },
-          { name: "Учебный план", link: null },
+          { name: "Учебный план", link: "/studyplan" },
           { name: "Сообщения", link: "/messages" }
         ],
 
@@ -78,11 +97,12 @@ export default {
         ]
       };
 
-      if (this.user.role === "student") {
-        nav_dict.student[1].link = "/curriculum/" + this.user.course_id;
+      if (this.user_role === "student") {
+        nav_dict.student[1].is_dropdown = true;
+        nav_dict.student[1].items = this.user.groups;
       }
 
-      return nav_dict[this.user.role];
+      return nav_dict[this.user_role];
     },
 
     navActiveLink: function() {

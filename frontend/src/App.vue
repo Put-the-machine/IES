@@ -14,6 +14,10 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 
 export default {
+  created() {
+    this.$store.dispatch("load_full_info");
+  },
+
   data() {
     return {};
   },

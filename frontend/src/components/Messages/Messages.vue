@@ -86,7 +86,7 @@ export default {
   },
 
   beforeCreate() {
-    if (this.$store.getters.user.role != "student") {
+    if (this.$store.getters.user_role != "student") {
       this.$router.push("/");
     }
   },

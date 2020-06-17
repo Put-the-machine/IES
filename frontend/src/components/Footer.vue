@@ -3,5 +3,5 @@
     b-container
       b-row
         b-col
-          .text-white.text-center.p-4.font-weight-light Lorem ipsum dolor sit amet
+          .text-white.text-center.p-4.font-weight-light Разработано командой Бурнакова Д.И.
 </template>
