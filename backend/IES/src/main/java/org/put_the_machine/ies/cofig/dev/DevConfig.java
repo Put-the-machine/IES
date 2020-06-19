@@ -195,11 +195,10 @@ public class DevConfig {
             Subject economySubject = new Subject();
             economySubject.setStudyPlanSubjects(new HashSet<>());
             economySubject.setSubjectGroups(new HashSet<>());
-
+            economySubject.setName("ЭКОНОМИКА");
             StudyPlanSubject economyStudyPlanSubject = new StudyPlanSubject();
-            economyStudyPlanSubject.setName("ЭКОНОМИКА");
             economyStudyPlanSubject.setSemester(4);
-            economyStudyPlanSubject.setTest(true);
+            economyStudyPlanSubject.setReportType(StudyPlanSubject.ReportType.Test);
             economyStudyPlanSubject.setSubject(economySubject);
             economySubject.getStudyPlanSubjects().add(economyStudyPlanSubject);
             economyStudyPlanSubject.setCourseProfile(pingCourseProfile);
@@ -208,11 +207,10 @@ public class DevConfig {
             Subject oopSubject = new Subject();
             oopSubject.setStudyPlanSubjects(new HashSet<>());
             oopSubject.setSubjectGroups(new HashSet<>());
-
+            oopSubject.setName("Современный ООП (поставьте зачет, пожалуйста)");
             StudyPlanSubject oopStudyPlanSubject = new StudyPlanSubject();
-            oopStudyPlanSubject.setName("Современный ООП (поставьте зачет, пожалуйста)");
             oopStudyPlanSubject.setSemester(4);
-            oopStudyPlanSubject.setTest(true);
+            oopStudyPlanSubject.setReportType(StudyPlanSubject.ReportType.Test);
             oopStudyPlanSubject.setSubject(oopSubject);
             oopSubject.getStudyPlanSubjects().add(oopStudyPlanSubject);
             oopStudyPlanSubject.setCourseProfile(pingCourseProfile);
@@ -306,7 +304,6 @@ public class DevConfig {
             lectureSubjectGroup.setSubject(oopSubject);
             lectureSubjectGroup.setTeacher(teacher);
             lectureSubjectGroup.setType(SubjectGroup.SubjectGroupType.LECTURE);
-
 
 
             Group ping21Group = new Group();

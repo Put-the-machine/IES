@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 @Service
 @RequiredArgsConstructor
-public class EmailMessageService implements UserEmailMessageService, NotificationEmailMessageService {
+public class EmailMessageServiceImpl implements UserEmailMessageService, NotificationEmailMessageService {
 
     private final JavaMailSender notificationEmailSender;
     private final JavaMailSender userEmailSender;
