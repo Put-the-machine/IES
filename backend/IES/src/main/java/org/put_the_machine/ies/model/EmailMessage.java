@@ -14,9 +14,9 @@ import java.util.List;
 @JsonIdentityInfo(generator = JSOGGenerator.class)
 public class EmailMessage {
     @Singular
-    List<Email> receivers;
-    String from;
-    String title;
-    String text;
-    List<MultipartFile> attachments;
+    private final List<Email> receivers;
+    private final String from;
+    private final String title;
+    private final String text;
+    private final List<MultipartFile> attachments;
 }

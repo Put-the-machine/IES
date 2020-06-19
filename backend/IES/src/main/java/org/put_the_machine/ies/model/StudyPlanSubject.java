@@ -3,9 +3,7 @@ package org.put_the_machine.ies.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,19 +16,31 @@ import javax.persistence.*;
         property = "id")
 
 public class StudyPlanSubject {
+    public enum ReportType {
+        Test,
+        Exam
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
     private int semester;
+    private String description;
+    private String content;
+    private String purpose;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Subject subject;
 
-    private boolean isTest;
-    private boolean isExam;
-    private boolean isCourseWork;
+    private ReportType reportType;
+
+    @Getter(AccessLevel.NONE)
+    private boolean courseWork;
+
+    public boolean hasCourseWork() {
+        return courseWork;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private CourseProfile courseProfile;

@@ -23,6 +23,8 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<StudyPlanSubject> studyPlanSubjects;
 
