@@ -1,5 +1,5 @@
 <template lang="pug">
-  Wrapper(:title="studyPlanSubject.name")
+  Wrapper(:title="studyPlanSubject.subject.name")
     SubjectGroupsExplorer(
       :subjectGroups="subjectGroups"
       :studyPlanSubject="studyPlanSubject"
@@ -47,11 +47,11 @@ export default {
   methods: {
     async openSubjectGroup(sg) {
       await this.$http
-        .get("http://localhost:8079/subject_groups/" + sg.id + "/documents")
+        .get("/subject_groups/" + sg.id + "/documents")
         .then(response => {
           this.files = this.$jsog.decode(response.data);
           this.path = [
-            { name: this.studyPlanSubject.name, path: "/" },
+            { name: this.studyPlanSubject.subject.name, path: "/" },
             { name: sg.name, path: "/" + sg.name }
           ];
         });
@@ -73,7 +73,7 @@ export default {
           }
         } else {
           let current_path = "";
-          this.path = [{ name: this.studyPlanSubject.name, path: "/" }];
+          this.path = [{ name: this.studyPlanSubject.subject.name, path: "/" }];
           for (let pathItem of pathToOpen.split("/").slice(1)) {
             current_path += "/" + pathItem;
             this.path.push({
@@ -85,7 +85,7 @@ export default {
       } else {
         this.$http({
           method: "GET",
-          url: "http://localhost:8079/documents/" + id,
+          url: "/documents/" + id,
           responseType: "blob"
         }).then(response => FileDownload(response.data, fileName));
       }
@@ -94,7 +94,7 @@ export default {
     async loadStudyPlanSubjectInfo() {
       await this.$http
         .get(
-          "http://localhost:8079/study_plan_subjects/" +
+          "/study_plan_subjects/" +
             this.studyPlanSubject.id
         )
         .then(
@@ -105,7 +105,7 @@ export default {
     async loadSubjectGroupsInfo() {
       await this.$http
         .get(
-          "http://localhost:8079/subjects/" +
+          "/subjects/" +
             this.studyPlanSubject.subject.id +
             "/students/" +
             this.user.id
@@ -117,6 +117,7 @@ export default {
 
     async loadAllInfo() {
       await this.loadStudyPlanSubjectInfo();
+      console.log(this.studyPlanSubject);
       await this.loadSubjectGroupsInfo();
     }
   },

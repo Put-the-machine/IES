@@ -6,18 +6,19 @@
         .sort.d-flex.flex-column.flex-md-row.ml-0.ml-lg-3.mt-3.mt-lg-0
           .p-1.pr-3 Сортировка:
           b-button-group(size="sm").d-none.d-md-flex
-            b-button(variant="outline-primary" :class="{ active: sortBy == 'code' }" @click="sortBy='code'") Код дисциплины
             b-button(variant="outline-primary" :class="{ active: sortBy == 'name' }" @click="sortBy='name'") Название дисциплины
+            b-button(variant="outline-primary" :class="{ active: sortBy == 'semester' }" @click="sortBy='semester'") Номер семестра
           
           b-button-group(size="sm" vertical).d-md-none
-            b-button(variant="outline-primary" :class="{ active: sortBy == 'code' }" @click="sortBy='code'") Код дисциплины
             b-button(variant="outline-primary" :class="{ active: sortBy == 'name' }" @click="sortBy='name'") Название дисциплины
+            b-button(variant="outline-primary" :class="{ active: sortBy == 'semester' }" @click="sortBy='semester'") Код дисциплины
 
       table.table.table-hover.mt-3
         thead.min-w-100
           tr.thead-dark
             th.font-weight-normal Код
             th.font-weight-normal Название
+            th.font-weight-normal Семестр
 
         tbody
           tr(v-if="studyPlanSubjects.length == 0")
@@ -28,15 +29,17 @@
             v-for="subject in studyPlanSubjects"
             :key="subject.id"
           )
-            td {{ subject.id }}
+            td {{ subject.subject.id }}
 
             td
               router-link(
                 :to="'subject/' + subject.id"
                 v-if="logged"
-              ) {{ subject.name }}
-
-              span(v-else) {{ subject.name }}
+              ) {{ subject.subject.name }}
+            
+              span(v-else) {{ subject.subject.name }}
+            
+            td {{ subject.semester }}
 </template>
 
 <script>
@@ -63,7 +66,7 @@ export default {
         name: null
       },
 
-      sortBy: "code",
+      sortBy: "name",
 
       studyPlanSubjects: []
     };
@@ -72,7 +75,7 @@ export default {
   methods: {
     async loadCourseProfileInfo() {
       await this.$http
-        .get("http://localhost:8079/course_profiles/" + this.courseProfile.id)
+        .get("/course_profiles/" + this.courseProfile.id)
         .then(
           response => (this.courseProfile = this.$jsog.decode(response.data))
         );
@@ -81,7 +84,7 @@ export default {
     async loadStudyPlanSubjects() {
       await this.$http
         .get(
-          "http://localhost:8079/courses/" +
+          "/courses/" +
             this.courseProfile.id +
             "/study_plan_subjects"
         )
@@ -102,7 +105,7 @@ export default {
     },
 
     sortedSubjects() {
-      if (this.sortBy == "code") {
+      if (this.sortBy == "semester") {
         return [...this.studyPlanSubjects].sort((a, b) => a.id - b.id);
       } else {
         return [...this.studyPlanSubjects].sort((a, b) =>

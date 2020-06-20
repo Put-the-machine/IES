@@ -11,7 +11,7 @@ export default {
     async load_full_info({ commit }) {
       try {
         await Axios.post(
-          "http://localhost:8079/login",
+          "/login",
           Querystring.stringify({
             username: "student",
             password: "password"
@@ -27,7 +27,7 @@ export default {
       }
 
       await Axios.get(
-        "http://localhost:8079/institutes/full_department_info"
+        "/institutes/full_department_info"
       ).then(response => commit("institutes", jsog.decode(response.data)));
     }
   },
