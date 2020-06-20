@@ -2,8 +2,8 @@
   Wrapper(title="Отправка сообщений")
     b-form
       b-form-select(
-        v-model="toTeacherId"
-        :options="teachers"
+        v-model="toTeacherEmail"
+        :options="teachersSelect"
       )
 
       b-form-textarea.mt-3(
@@ -35,17 +35,10 @@ import Wrapper from "../Wrapper";
 export default {
   data() {
     return {
-      toTeacherId: null,
+      teachers: [],
+      toTeacherEmail: null,
       message: "",
-      files: [],
-
-      teachers: [
-        { value: null, text: "Выберите преподавателя" },
-        { value: 1, text: "Иван Иванович Иван" },
-        { value: 2, text: "Надежда Алексеевна Алексеева" },
-        { value: 3, text: "Алексей Андреевич Андреев" },
-        { value: 4, text: "Анастасия Максимовна Фролова" }
-      ]
+      files: []
     };
   },
 
@@ -54,30 +47,52 @@ export default {
       return this.$store.getters.user;
     },
 
-    fromStudentId: function() {
-      return this.fromStudent.id;
+    teachersSelect: function() {
+      var items = [
+        { value: null, text: "Выберите преподавателя" },
+        { value: "xramirezx@outlook.com", text: "Яндыбаев Даниил Игоревич" }
+      ];
+
+      for (let teacher of this.teachers) {
+        items.push({ value: "xramirezx@outlook.com", text: teacher.fullName });
+      }
+
+      return items;
     }
   },
 
   methods: {
-    messageSubmit() {
-      let request = {
-        POST: {
-          url: "/api/messages.sendToTeacher",
-          data: {
-            fromStudentId: this.fromStudentId,
-            toTeacherId: this.toTeacherId,
-            message: this.message,
-            files: this.files
-          }
+    async loadTeatchers() {
+      // await this.$http.get("/teachers")
+      // .then(response => this.teachers = this.$jsog.decode(response.data));
+    },
+
+    async messageSubmit() {
+      let body = {
+        receiver: "xramirezx@outlook.com",
+        from: "student@mail.ru",
+        title: "Message From IES",
+        text: this.message
+      }
+
+
+      let formBody = [];
+
+      for (var property in body) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(body[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+
+      await this.$http.post("/sendUserEmailMessage",
+        {
+          body: formBody.join("&"),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" }
         }
-      };
+      );
 
-      alert(JSON.stringify(request, null, "    "));
-
-      this.toTeacherId = null;
+      this.toTeacherEmail = null;
       this.message = "";
-      this.files = [];
     }
   },
 
@@ -93,6 +108,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("navActiveLink", "/messages");
+    this.loadTeatchers();
   }
 };
 </script>

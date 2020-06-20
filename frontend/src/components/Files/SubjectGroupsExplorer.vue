@@ -1,7 +1,7 @@
 <template lang="pug">
   .wrapper
     span / 
-    span.text-primary {{ studyPlanSubject.name }}
+    span.text-primary {{ studyPlanSubject.subject.name }}
     table.table.table-responsive.table-hover.border.mt-2.d-md-block.d-md-table
       thead
         tr.thead-dark

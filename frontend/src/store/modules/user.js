@@ -19,7 +19,7 @@ export default {
 
   actions: {
     async auth({ commit }, form) {
-      const baseUrl = "http://localhost:8079/";
+      const baseUrl = "/";
 
       try {
         await Axios.post(
@@ -54,17 +54,15 @@ export default {
       }
     },
 
-    logout({ commit }, id) {
-      let request = {
-        POST: {
-          url: "/api/users.logout",
-          data: {
-            id
-          }
-        }
-      };
+    async logout({ commit }) {
+      try {
+        await Axios.get("/logout", {
+          withCredentials: true
+        });
+      } catch {
+        console.log("404 after logout");
+      }
 
-      alert(JSON.stringify(request, null, "    "));
       commit("logout");
     }
   },
