@@ -24,7 +24,7 @@ public class DevSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/**")
-                .authenticated()
+                .permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")

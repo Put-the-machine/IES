@@ -38,50 +38,7 @@ import java.util.Set;
 @PropertySource("classpath:application-dev.yaml")
 public class DevConfig {
 
-    @Bean
-    public Module datatypeHibernateModule() {
-        return new Hibernate5Module();
-    }
 
-    @Bean
-    public ViewResolver thymeleafViewResolver() {
-
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-
-        viewResolver.setTemplateEngine(thymeleafTemplateEngine());
-        viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setOrder(0);
-
-        return viewResolver;
-    }
-
-    @Bean
-    public SpringTemplateEngine thymeleafTemplateEngine() {
-
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(thymeleafTemplateResolver());
-        templateEngine.setEnableSpringELCompiler(true);
-
-        return templateEngine;
-    }
-
-    @Bean
-    public SpringResourceTemplateResolver springResourceTemplateResolver() {
-        return new SpringResourceTemplateResolver();
-    }
-
-    @Bean
-    public ITemplateResolver thymeleafTemplateResolver() {
-
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-
-        templateResolver.setCacheable(false);
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateResolver.setCharacterEncoding("UTF-8");
-
-        return templateResolver;
-    }
 
     @Bean
     CommandLineRunner insertTestData(

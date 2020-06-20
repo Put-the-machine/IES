@@ -21,7 +21,7 @@ public class EmailMessageServiceImpl implements UserEmailMessageService, Notific
 
     @Override
     public void sendUserMessage(EmailMessage message) {
-        sendMessage(userEmailSender, message);
+        sendMessage(notificationEmailSender, message);
     }
 
     @Override
